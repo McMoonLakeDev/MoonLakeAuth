@@ -18,33 +18,32 @@
 
 package com.minecraft.moonlake.auth.data;
 
-public class MojangBaseResponse extends Response {
+import java.util.Iterator;
+import java.util.List;
 
-    private String error;
-    private String cause;
-    private String errorMessage;
+public class StatusServiceList implements Iterable<StatusService> {
 
-    public String getError() {
-        return error;
+    private List<StatusService> serviceList;
+
+    public StatusServiceList(List<StatusService> serviceList) {
+        this.serviceList = serviceList;
     }
 
-    public String getCause() {
-        return cause;
+    public StatusService getByHost(String host) {
+        for(Iterator<StatusService> iterator = iterator(); iterator().hasNext();) {
+            StatusService service = iterator.next();
+            if(service.getHost().equals(host))
+                return service;
+        }
+        return null;
     }
 
-    public String getErrorMessage() {
-        return errorMessage;
+    public int size() {
+        return serviceList.size();
     }
 
-    protected void setError(String error) {
-        this.error = error;
-    }
-
-    protected void setCause(String cause) {
-        this.cause = cause;
-    }
-
-    protected void setErrorMessage(String errorMessage) {
-        this.errorMessage = errorMessage;
+    @Override
+    public Iterator<StatusService> iterator() {
+        return serviceList.iterator();
     }
 }

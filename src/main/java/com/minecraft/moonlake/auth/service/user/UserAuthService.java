@@ -19,7 +19,7 @@
 package com.minecraft.moonlake.auth.service.user;
 
 import com.minecraft.moonlake.auth.data.GameProfile;
-import com.minecraft.moonlake.auth.data.MojangBaseResponse;
+import com.minecraft.moonlake.auth.response.MojangBaseResponse;
 import com.minecraft.moonlake.auth.data.Property;
 import com.minecraft.moonlake.auth.exception.MoonLakeAuthException;
 import com.minecraft.moonlake.auth.exception.MoonLakeRequestException;

@@ -18,12 +18,14 @@
 
 package com.minecraft.moonlake.auth.service.profile;
 
-import com.minecraft.moonlake.auth.data.GameProfile;
-import com.minecraft.moonlake.auth.data.ProfileLookupCallback;
-import com.minecraft.moonlake.auth.data.ProfileSearchResponse;
+import com.minecraft.moonlake.auth.data.*;
 import com.minecraft.moonlake.auth.exception.MoonLakeProfileNotFoundException;
 import com.minecraft.moonlake.auth.exception.MoonLakeRequestException;
+import com.minecraft.moonlake.auth.response.MojangBaseResponse;
+import com.minecraft.moonlake.auth.response.ProfileHistoryResponse;
+import com.minecraft.moonlake.auth.response.ProfileSearchResponse;
 import com.minecraft.moonlake.auth.service.MoonLakeAuthBaseService;
+import com.minecraft.moonlake.auth.util.UUIDSerializer;
 
 import java.net.Proxy;
 import java.util.*;
@@ -31,6 +33,8 @@ import java.util.*;
 public class ProfileAuthService extends MoonLakeAuthBaseService {
 
     private final static String URL_PROFILES = "https://api.mojang.com/profiles/minecraft";
+    private final static String URL_PROFILE_TIME = "https://api.mojang.com/users/profiles/minecraft";
+    private final static String URL_PROFILE_HISTORY = "https://api.mojang.com/user/profiles/%1$s/names";
     private final static int MAX_FAIL_COUNT = 3;
     private final static int DELAY_BETWEEN_PAGES = 100;
     private final static int DELAY_BETWEEN_FAILURES = 750;
@@ -94,6 +98,71 @@ public class ProfileAuthService extends MoonLakeAuthBaseService {
                 }
             }
         };
+        start(runnable, async);
+    }
+
+    public void findProfileByTimestamp(String name, ProfileLookupCallback callback) {
+        findProfileByTimestamp(name, callback, false);
+    }
+
+    public void findProfileByTimestamp(String name, ProfileLookupCallback callback, boolean async) {
+        findProfileByTimestamp(name, -1L, callback, async);
+    }
+
+    public void findProfileByTimestamp(String name, long timestamp, ProfileLookupCallback callback) {
+        findProfileByTimestamp(name, timestamp, callback, false);
+    }
+
+    public void findProfileByTimestamp(String name, long timestamp, ProfileLookupCallback callback, boolean async) {
+        validate(name, "名称对象不能为 null 值.");
+        validate(callback, "游戏档案查询回调对象不能为 null 值.");
+        final String finalUrl = URL_PROFILE_TIME + "/" + name + (timestamp < 0L ? "" : ("?at=" + timestamp));
+        Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    ProfileTimestampResponse response = makeRequest(getProxy(), finalUrl, null, ProfileTimestampResponse.class);
+                    callback.onLookupSucceeded(new GameProfile(response.id, response.name));
+                } catch (Exception e) {
+                    callback.onLookupFailed(new GameProfile((UUID) null, name), e);
+                }
+            }
+        };
+        start(runnable, async);
+    }
+
+    public void findNameHistoryByProfile(GameProfile profile, ProfileHistoryCallback callback) {
+        findNameHistoryByProfile(profile, callback, false);
+    }
+
+    public void findNameHistoryByProfile(GameProfile profile, ProfileHistoryCallback callback, boolean async) {
+        validate(profile, "游戏档案对象不能为 null 值.");
+        validate(callback, "档案历史回调对象不能为 null 值.");
+        findNameHistoryById(profile.getId(), callback, async);
+    }
+
+    public void findNameHistoryById(UUID id, ProfileHistoryCallback callback) {
+        findNameHistoryById(id, callback, false);
+    }
+
+    public void findNameHistoryById(UUID id, ProfileHistoryCallback callback, boolean async) {
+        validate(id, "目标 UUID 对象不能为 null 值.");
+        final String finalUrl = String.format(URL_PROFILE_HISTORY, UUIDSerializer.fromUUID(id));
+        Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    ProfileHistoryResponse response = makeRequest(getProxy(), finalUrl, null, ProfileHistoryResponse.class);
+                    callback.onLookupSucceeded(id, new ProfileHistoryList(Arrays.asList(response.getHistories())));
+                } catch (Exception e) {
+                    callback.onLookupFailed(id, e);
+                }
+            }
+        };
+        start(runnable, async);
+    }
+
+    private static void start(final Runnable runnable, boolean async) {
         if(async)
             new Thread(runnable, "ProfileAuthService").start();
         else
@@ -109,5 +178,15 @@ public class ProfileAuthService extends MoonLakeAuthBaseService {
             request.add(value);
         }
         return request;
+    }
+
+    private static class ProfileTimestampResponse extends MojangBaseResponse {
+        private UUID id;
+        private String name;
+
+        protected ProfileTimestampResponse(UUID id, String name) {
+            this.id = id;
+            this.name = name;
+        }
     }
 }

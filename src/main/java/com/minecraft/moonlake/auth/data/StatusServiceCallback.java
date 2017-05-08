@@ -18,6 +18,9 @@
 
 package com.minecraft.moonlake.auth.data;
 
-public abstract class Response {
+public interface StatusServiceCallback {
 
+    void onCheckSucceeded(StatusServiceList serviceList);
+
+    void onCheckFailed(Exception ex);
 }

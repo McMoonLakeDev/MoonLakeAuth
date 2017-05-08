@@ -16,9 +16,10 @@
  */
 
 
-package com.minecraft.moonlake.auth.data;
+package com.minecraft.moonlake.auth.response;
 
 import com.google.gson.*;
+import com.minecraft.moonlake.auth.data.GameProfile;
 
 import java.lang.reflect.Type;
 

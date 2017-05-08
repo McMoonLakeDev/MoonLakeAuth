@@ -20,8 +20,10 @@ package com.minecraft.moonlake.auth.service;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.minecraft.moonlake.auth.data.MojangBaseResponse;
-import com.minecraft.moonlake.auth.data.ProfileSearchResponse;
+import com.minecraft.moonlake.auth.response.MojangBaseResponse;
+import com.minecraft.moonlake.auth.response.MojangStatusResponse;
+import com.minecraft.moonlake.auth.response.ProfileHistoryResponse;
+import com.minecraft.moonlake.auth.response.ProfileSearchResponse;
 import com.minecraft.moonlake.auth.exception.MoonLakeInvalidCredentialsException;
 import com.minecraft.moonlake.auth.exception.MoonLakeRequestException;
 import com.minecraft.moonlake.auth.exception.MoonLakeSerivceUnavailableException;
@@ -43,6 +45,8 @@ public abstract class MoonLakeAuthBaseService implements MoonLakeAuthService {
         GSON = new GsonBuilder()
                 .registerTypeAdapter(UUID.class, new UUIDSerializer())
                 .registerTypeAdapter(ProfileSearchResponse.class, new ProfileSearchResponse.Serializer())
+                .registerTypeAdapter(ProfileHistoryResponse.class, new ProfileHistoryResponse.Serializer())
+                .registerTypeAdapter(MojangStatusResponse.class, new MojangStatusResponse.Serializer())
                 .create();
     }
 

@@ -22,6 +22,7 @@ import com.minecraft.moonlake.auth.data.*;
 import com.minecraft.moonlake.auth.exception.MoonLakeProfileException;
 import com.minecraft.moonlake.auth.exception.MoonLakeProfileNotFoundException;
 import com.minecraft.moonlake.auth.exception.MoonLakeRequestException;
+import com.minecraft.moonlake.auth.response.MojangBaseResponse;
 import com.minecraft.moonlake.auth.service.MoonLakeAuthBaseService;
 import com.minecraft.moonlake.auth.util.UUIDSerializer;
 
