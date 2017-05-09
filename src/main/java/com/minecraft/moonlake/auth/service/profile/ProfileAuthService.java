@@ -19,15 +19,18 @@
 package com.minecraft.moonlake.auth.service.profile;
 
 import com.minecraft.moonlake.auth.data.*;
-import com.minecraft.moonlake.auth.exception.MoonLakeProfileNotFoundException;
-import com.minecraft.moonlake.auth.exception.MoonLakeRequestException;
+import com.minecraft.moonlake.auth.exception.*;
 import com.minecraft.moonlake.auth.response.MojangBaseResponse;
 import com.minecraft.moonlake.auth.response.ProfileHistoryResponse;
 import com.minecraft.moonlake.auth.response.ProfileSearchResponse;
 import com.minecraft.moonlake.auth.service.MoonLakeAuthBaseService;
+import com.minecraft.moonlake.auth.service.mc.MinecraftAuthService;
 import com.minecraft.moonlake.auth.util.UUIDSerializer;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
 import java.net.Proxy;
+import java.net.URL;
 import java.util.*;
 
 public class ProfileAuthService extends MoonLakeAuthBaseService {
@@ -46,6 +49,15 @@ public class ProfileAuthService extends MoonLakeAuthBaseService {
 
     public ProfileAuthService(Proxy proxy) {
         super(proxy);
+    }
+
+    public void findProfileByName(final String name, final ProfileLookupCallback callback) {
+        findProfileByName(name, callback, false);
+    }
+
+    public void findProfileByName(final String name, final ProfileLookupCallback callback, boolean async) {
+        validate(name, "名称对象不能为 null 值.");
+        findProfilesByName(new String[] { name }, callback, async);
     }
 
     public void findProfilesByName(final String[] names, final ProfileLookupCallback callback) {
@@ -160,6 +172,98 @@ public class ProfileAuthService extends MoonLakeAuthBaseService {
             }
         };
         start(runnable, async);
+    }
+
+    public void findSkinRawTextureByName(String name, SkinRawImageCallback<String> callback) throws MoonLakeAuthException {
+        findSkinRawTextureByName(name, callback, false);
+    }
+
+    public void findSkinRawTextureByName(String name, SkinRawImageCallback<String> callback, boolean async) throws MoonLakeAuthException {
+        validate(name, "用户名对象不能为 null 值.");
+        validate(callback, "皮肤源图片回调对象不能为 null 值.");
+        Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                ProfileAuthService profileAuthService = new ProfileAuthService(getProxy());
+                profileAuthService.findProfileByName(name, new ProfileLookupCallback() {
+                    @Override
+                    public void onLookupSucceeded(GameProfile profile) {
+                        try {
+                            findSkinRawTextureByProfile(profile, new SkinRawImageCallback<GameProfile>() {
+                                @Override
+                                public void onLookupSucceeded(GameProfile param, BufferedImage skinRawImage) {
+                                    callback.onLookupSucceeded(param.getName(), skinRawImage);
+                                }
+
+                                @Override
+                                public void onLookupFailed(GameProfile param, Exception ex) {
+                                    callback.onLookupFailed(param.getName(), ex);
+                                }
+                            }, false); // false 不再使用新的线程, 而在当前线程
+                        } catch (MoonLakeAuthException e) {
+                            callback.onLookupFailed(name, e);
+                        }
+                    }
+
+                    @Override
+                    public void onLookupFailed(GameProfile profile, Exception ex) {
+                        callback.onLookupFailed(profile.getName(), ex);
+                    }
+                });
+            }
+        };
+        start(runnable, async);
+    }
+
+    public void findSkinRawTextureByProfile(GameProfile profile, SkinRawImageCallback<GameProfile> callback) throws MoonLakeAuthException {
+        findSkinRawTextureByProfile(profile, callback, false);
+    }
+
+    public void findSkinRawTextureByProfile(GameProfile profile, SkinRawImageCallback<GameProfile> callback, boolean async) throws MoonLakeAuthException {
+        validate(profile, "游戏档案对象不能为 null 值.");
+        validate(callback, "皮肤源图片回调对象不能为 null 值.");
+        Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                boolean existGetSucceed = false;
+                ProfileTexture skinTexture = null;
+                Map<TextureType, ProfileTexture> textures = profile.getTextures();
+                if(!textures.isEmpty() && (skinTexture = textures.get(TextureType.SKIN)) != null && !isBlank(skinTexture.getUrl())) {
+                    try {
+                        BufferedImage image = getSkinRawTextureByProfile(profile);
+                        callback.onLookupSucceeded(profile, image);
+                        existGetSucceed = true;
+                    } catch (MoonLakeSkinException e) {
+                    }
+                }
+                if(existGetSucceed)
+                    return;
+                // 当前游戏档案不存在材质属性数据则进行获取
+                try {
+                    MinecraftAuthService minecraftAuthService = new MinecraftAuthService(getProxy());
+                    minecraftAuthService.fillProfileProperties(profile);
+                    minecraftAuthService.fillProfileTextures(profile);
+                    BufferedImage image = getSkinRawTextureByProfile(profile);
+                    callback.onLookupSucceeded(profile, image);
+                } catch (Exception e) {
+                    callback.onLookupFailed(profile, e);
+                }
+            }
+        };
+        start(runnable, async);
+    }
+
+    public BufferedImage getSkinRawTextureByProfile(GameProfile profile) throws MoonLakeSkinException {
+        validate(profile, "游戏档案对象不能为 null 值.");
+        try {
+            ProfileTexture skinTexture = null;
+            Map<TextureType, ProfileTexture> textures = profile.getTextures();
+            if(textures.isEmpty() || (skinTexture = textures.get(TextureType.SKIN)) == null || isBlank(skinTexture.getUrl()))
+                throw new MoonLakeSkinNotFoundException("游戏档案对象不存在任何皮肤材质数据.");
+            return ImageIO.read(new URL(skinTexture.getUrl()));
+        } catch (Exception e) {
+            throw new MoonLakeSkinException("获取游戏档案的皮肤材质数据时错误.", e);
+        }
     }
 
     private static void start(final Runnable runnable, boolean async) {

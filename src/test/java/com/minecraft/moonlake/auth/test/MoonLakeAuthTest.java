@@ -28,6 +28,9 @@ import com.minecraft.moonlake.auth.util.UUIDSerializer;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.UUID;
@@ -144,11 +147,36 @@ public class MoonLakeAuthTest {
             // 获取当前用户的 minecraft 游戏档案数据
             MinecraftAuthService mcAuthService = new MinecraftAuthService();
             mcAuthService.fillProfileProperties(authService.getSelectedProfile()); // 填充游戏档案的属性数据
-            mcAuthService.fillProfileTexutes(authService.getSelectedProfile()); // 填充游戏档案的材质属性数据
+            mcAuthService.fillProfileTextures(authService.getSelectedProfile()); // 填充游戏档案的材质属性数据
             System.out.println(authService.getSelectedProfile()); // 打印最终游戏档案
 
             // 登出当前用户服务
             authService.invalidateToken(); // 将访问令牌进行失效
         }
+    }
+
+    @Test
+    @Ignore // ignore
+    public void testTexture() throws MoonLakeAuthException {
+        // 测试获取指定玩家的正版皮肤材质源文件
+        ProfileAuthService authService = new ProfileAuthService();
+        authService.findSkinRawTextureByName("Month_Light", new SkinRawImageCallback<String>() {
+            @Override
+            public void onLookupSucceeded(String param, BufferedImage skinRawImage) {
+                try {
+                    File outFile = new File("src\\test\\" + param + ".png");
+                    System.out.println("成功获取到玩家 '" + param + "' 的皮肤材质源文件:");
+                    System.out.println("写出到: " + outFile.getAbsolutePath());
+                    ImageIO.write(skinRawImage, "PNG", outFile);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onLookupFailed(String param, Exception ex) {
+                ex.printStackTrace();
+            }
+        });
     }
 }

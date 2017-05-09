@@ -57,7 +57,6 @@ public class MinecraftAuthService extends MoonLakeAuthBaseService {
             KeyFactory keyFactory = KeyFactory.getInstance("RSA");
             SIGNATURE_KEY = keyFactory.generatePublic(spec);
         } catch (Exception e) {
-            e.printStackTrace();
             throw new ExceptionInInitializerError("不存在或无效的 yggdrasil 公钥.");
         } finally {
             if(input != null) try {
@@ -114,11 +113,11 @@ public class MinecraftAuthService extends MoonLakeAuthBaseService {
         }
     }
 
-    public GameProfile fillProfileTexutes(GameProfile profile) throws MoonLakeProfileException {
-        return fillProfileTexutes(profile, true);
+    public GameProfile fillProfileTextures(GameProfile profile) throws MoonLakeProfileException {
+        return fillProfileTextures(profile, true);
     }
 
-    public GameProfile fillProfileTexutes(GameProfile profile, boolean requireSecure) throws MoonLakeProfileException {
+    public GameProfile fillProfileTextures(GameProfile profile, boolean requireSecure) throws MoonLakeProfileException {
         Map<TextureType, ProfileTexture> textures = getProfileTextures(profile, requireSecure);
         profile.getTextures().putAll(textures);
         return profile;
@@ -133,10 +132,12 @@ public class MinecraftAuthService extends MoonLakeAuthBaseService {
         Property property = profile.getProperty("textures");
         if(property == null)
             return new HashMap<>();
-        if(!property.hasSignature())
-            throw new MoonLakeProfileException("游戏档案的属性材质数据不存在签名.");
-        if(!property.validateSignature(SIGNATURE_KEY))
-            throw new MoonLakeProfileException("无法验证游戏档案的属性材质数据的签名值.");
+        if(requireSecure) {
+            if(!property.hasSignature())
+                throw new MoonLakeProfileException("游戏档案的属性材质数据不存在签名.");
+            if(!property.validateSignature(SIGNATURE_KEY))
+                throw new MoonLakeProfileException("无法验证游戏档案的属性材质数据的签名值.");
+        }
         MinecraftTexturesPayload result = null;
         try {
             String data = new String(Base64.getDecoder().decode(property.getValue().getBytes(Charset.forName("utf-8"))));
