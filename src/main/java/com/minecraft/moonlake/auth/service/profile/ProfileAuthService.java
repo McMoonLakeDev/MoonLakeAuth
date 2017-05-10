@@ -184,8 +184,7 @@ public class ProfileAuthService extends MoonLakeAuthBaseService {
         Runnable runnable = new Runnable() {
             @Override
             public void run() {
-                ProfileAuthService profileAuthService = new ProfileAuthService(getProxy());
-                profileAuthService.findProfileByName(name, new ProfileLookupCallback() {
+                findProfileByName(name, new ProfileLookupCallback() {
                     @Override
                     public void onLookupSucceeded(GameProfile profile) {
                         try {
