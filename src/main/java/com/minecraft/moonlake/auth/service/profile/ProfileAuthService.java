@@ -28,10 +28,12 @@ import com.minecraft.moonlake.auth.service.mc.MinecraftAuthService;
 import com.minecraft.moonlake.auth.util.UUIDSerializer;
 
 import javax.imageio.ImageIO;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.net.Proxy;
 import java.net.URL;
 import java.util.*;
+import java.util.List;
 
 public class ProfileAuthService extends MoonLakeAuthBaseService {
 
@@ -265,6 +267,149 @@ public class ProfileAuthService extends MoonLakeAuthBaseService {
         }
     }
 
+    public void findSkinHeadTextureByName(String name, SkinRawImageCallback<String> callback) throws MoonLakeSkinException {
+        findSkinHeadTextureByName(name, 8, callback);
+    }
+
+    public void findSkinHeadTextureByName(String name, int zoom, SkinRawImageCallback<String> callback) throws MoonLakeSkinException {
+        findSkinHeadTextureByName(name, zoom, true, callback);
+    }
+
+    public void findSkinHeadTextureByName(String name, int zoom, boolean helmet, SkinRawImageCallback<String> callback) throws MoonLakeSkinException {
+        findSkinHeadTextureByName(name, zoom, helmet, callback, false);
+    }
+
+    public void findSkinHeadTextureByName(String name, int zoom, boolean helmet, SkinRawImageCallback<String> callback, boolean async) throws MoonLakeSkinException {
+        validate(name, "用户名对象不能为 null 值.");
+        validate(callback, "皮肤源图片回调对象不能为 null 值.");
+        Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                findProfileByName(name, new ProfileLookupCallback() {
+                    @Override
+                    public void onLookupSucceeded(GameProfile profile) {
+                        try {
+                            findSkinHeadTextureByProfile(profile, zoom, helmet, new SkinRawImageCallback<GameProfile>() {
+                                @Override
+                                public void onLookupSucceeded(GameProfile param, BufferedImage headImage) {
+                                    callback.onLookupSucceeded(param.getName(), headImage);
+                                }
+
+                                @Override
+                                public void onLookupFailed(GameProfile param, Exception ex) {
+                                    callback.onLookupFailed(param.getName(), ex);
+                                }
+                            });
+                        } catch (MoonLakeAuthException e) {
+                            callback.onLookupFailed(name, e);
+                        }
+                    }
+
+                    @Override
+                    public void onLookupFailed(GameProfile profile, Exception ex) {
+                        callback.onLookupFailed(profile.getName(), ex);
+                    }
+                });
+            }
+        };
+        start(runnable, async);
+    }
+
+    public void findSkinHeadTextureByProfile(GameProfile profile, SkinRawImageCallback<GameProfile> callback) throws MoonLakeSkinException {
+        findSkinHeadTextureByProfile(profile, 8, callback);
+    }
+
+    public void findSkinHeadTextureByProfile(GameProfile profile, int zoom, SkinRawImageCallback<GameProfile> callback) throws MoonLakeSkinException {
+        findSkinHeadTextureByProfile(profile, zoom, true, callback);
+    }
+
+    public void findSkinHeadTextureByProfile(GameProfile profile, int zoom, boolean helmet, SkinRawImageCallback<GameProfile> callback) throws MoonLakeSkinException {
+        findSkinHeadTextureByProfile(profile, zoom, helmet, callback, false);
+    }
+
+    public void findSkinHeadTextureByProfile(GameProfile profile, int zoom, boolean helmet, SkinRawImageCallback<GameProfile> callback, boolean async) throws MoonLakeSkinException {
+        validate(profile, "游戏档案对象不能为 null 值.");
+        validate(callback, "皮肤源图片回调对象不能为 null 值.");
+        Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                boolean existGetSucceed = false;
+                ProfileTexture skinTexture = null;
+                Map<TextureType, ProfileTexture> textures = profile.getTextures();
+                if(!textures.isEmpty() && (skinTexture = textures.get(TextureType.SKIN)) != null && !isBlank(skinTexture.getUrl())) {
+                    try {
+                        BufferedImage image = getSkinRawTextureByProfile(profile);
+                        BufferedImage headImage = getSkinHeadTextureByRaw(image, zoom, helmet);
+                        callback.onLookupSucceeded(profile, headImage);
+                        existGetSucceed = true;
+                    } catch (MoonLakeSkinException e) {
+                    }
+                }
+                if(existGetSucceed)
+                    return;
+                // 当前游戏档案不存在材质属性数据则进行获取
+                try {
+                    MinecraftAuthService minecraftAuthService = new MinecraftAuthService(getProxy());
+                    minecraftAuthService.fillProfileProperties(profile);
+                    minecraftAuthService.fillProfileTextures(profile);
+                    BufferedImage image = getSkinRawTextureByProfile(profile);
+                    BufferedImage headImage = getSkinHeadTextureByRaw(image, zoom, helmet);
+                    callback.onLookupSucceeded(profile, headImage);
+                } catch (Exception e) {
+                    callback.onLookupFailed(profile, e);
+                }
+            }
+        };
+        start(runnable, async);
+    }
+
+    public BufferedImage getSkinHeadTextureByProfile(GameProfile profile) throws MoonLakeSkinException {
+        return getSkinHeadTextureByProfile(profile, 8);
+    }
+
+    public BufferedImage getSkinHeadTextureByProfile(GameProfile profile, int zoom) throws MoonLakeSkinException {
+        return getSkinHeadTextureByProfile(profile, zoom, true);
+    }
+
+    public BufferedImage getSkinHeadTextureByProfile(GameProfile profile, int zoom, boolean helmet) throws MoonLakeSkinException {
+        validate(profile, "游戏档案对象不能为 null 值.");
+        BufferedImage skinRawImage = getSkinRawTextureByProfile(profile);
+        return getSkinHeadTextureByRaw(skinRawImage, zoom, helmet);
+    }
+
+    public BufferedImage getSkinHeadTextureByRaw(BufferedImage skinRawImage) throws MoonLakeSkinException {
+        return getSkinHeadTextureByRaw(skinRawImage, 8);
+    }
+
+    public BufferedImage getSkinHeadTextureByRaw(BufferedImage skinRawImage, int zoom) throws MoonLakeSkinException {
+        return getSkinHeadTextureByRaw(skinRawImage, zoom, true);
+    }
+
+    public BufferedImage getSkinHeadTextureByRaw(BufferedImage skinRawImage, int zoom, boolean helmet) throws MoonLakeSkinException {
+        validate(skinRawImage, "皮肤材质源图片对象不能为 null 值.");
+        Boolean skinVer = getSkinRawImageVer(skinRawImage);
+        if(skinVer == null)
+            throw new MoonLakeSkinException("错误的皮肤材质源图片大小, 应为 64x64 或 64x32 大小.");
+        if(zoom <= 0)
+            zoom = 1;
+        if(skinRawImage.getType() != BufferedImage.TYPE_INT_ARGB)
+            skinRawImage = conversionImage(skinRawImage, BufferedImage.TYPE_INT_ARGB);
+        // 如果皮肤源图片的类型不为 INT_ARGB 通道则进行重绘并转换
+        BufferedImage skinHeadImage = new BufferedImage(8, 8, BufferedImage.TYPE_INT_ARGB);
+        skinHeadImage.setRGB(0, 0, 8, 8, skinRawImage.getRGB(8, 8, 8, 8, null, 0, 8), 0, 8);
+        int[] helmetRgb = helmet ? skinRawImage.getRGB(40, 8, 8, 8, null, 0, 8) : null;
+        if(helmet)
+            for(int i = 0; i < helmetRgb.length; i++)
+                if(!isInvalidColorRgb(helmetRgb[i])) // 如果该像素点不是无效的则填充
+                    skinHeadImage.setRGB(i % 8, i / 8, helmetRgb[i]);
+        // 将 8x8 像素的头像图片进行放大处理
+        BufferedImage finalImage = new BufferedImage(8 * zoom, 8 * zoom, BufferedImage.TYPE_INT_ARGB);
+        Graphics g = finalImage.createGraphics();
+        g.drawImage(skinHeadImage, 0, 0, finalImage.getWidth(), finalImage.getHeight(), null);
+        g.dispose();
+        return finalImage;
+    }
+
     private static void start(final Runnable runnable, boolean async) {
         if(async)
             new Thread(runnable, "ProfileAuthService").start();
@@ -281,6 +426,35 @@ public class ProfileAuthService extends MoonLakeAuthBaseService {
             request.add(value);
         }
         return request;
+    }
+
+    private static Boolean getSkinRawImageVer(BufferedImage skinRawImage) {
+        // 获取皮肤材质源图片的版本
+        // false: 旧版本 64x32 像素
+        // true: 新版本 64x64 像素
+        // null: 错误的像素大小
+        int width = skinRawImage.getWidth();
+        int height = skinRawImage.getHeight();
+        if(width == 64) {
+            if(height == 64)
+                return true;
+            if(height == 32)
+                return false;
+        }
+        return null;
+    }
+
+    private static BufferedImage conversionImage(BufferedImage image, int type) {
+        BufferedImage conversion = new BufferedImage(image.getWidth(), image.getHeight(), type);
+        conversion.getGraphics().drawImage(image, 0, 0, null);
+        return conversion;
+    }
+
+    private static boolean isInvalidColorRgb(int rgb) {
+        int r = (rgb & 0xff0000) >> 16;
+        int g = (rgb & 0xff00) >> 8;
+        int b = (rgb & 0xff);
+        return (r == 0 && g == 0 && b == 0) || (r == 0xff && g == 0xff && b == 0xff);
     }
 
     private static class ProfileTimestampResponse extends MojangBaseResponse {

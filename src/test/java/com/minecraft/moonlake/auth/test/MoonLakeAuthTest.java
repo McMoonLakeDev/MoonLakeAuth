@@ -31,6 +31,7 @@ import org.junit.Test;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.UUID;
@@ -169,6 +170,28 @@ public class MoonLakeAuthTest {
                     System.out.println("写出到: " + outFile.getAbsolutePath());
                     ImageIO.write(skinRawImage, "PNG", outFile);
                 } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onLookupFailed(String param, Exception ex) {
+                ex.printStackTrace();
+            }
+        });
+    }
+
+    @Test
+    @Ignore
+    public void testSkinHeadImageName() throws Exception {
+        ProfileAuthService authService = new ProfileAuthService();
+        authService.findSkinHeadTextureByName("month_light", new SkinRawImageCallback<String>() {
+            @Override
+            public void onLookupSucceeded(String param, BufferedImage skinRawImage) {
+                try {
+                    System.out.println("成功获取到用户 '" + param + "' 的皮肤头像材质:");
+                    ImageIO.write(skinRawImage, "PNG", new File("src\\test\\" + param + "-Head.png"));
+                } catch (IOException e) {
                     e.printStackTrace();
                 }
             }

@@ -71,6 +71,11 @@ public abstract class MoonLakeAuthBaseService implements MoonLakeAuthService {
             throw new IllegalArgumentException(message);
     }
 
+    protected static void validateTrue(boolean expression, String message) throws IllegalArgumentException {
+        if(!expression)
+            throw new IllegalArgumentException(message);
+    }
+
     private static void validateProxyAndURL(Proxy proxy, String url) throws IllegalArgumentException {
         validate(proxy, "代理对象不能为 null 值.");
         validate(url, "目标 URL 对象不能为 null 值.");
