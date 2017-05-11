@@ -202,4 +202,25 @@ public class MoonLakeAuthTest {
             }
         });
     }
+
+    @Test
+    @Ignore
+    public void testSkinModel2DImage() throws Exception {
+        ProfileAuthService authService = new ProfileAuthService();
+        authService.findSkinModel2DTextureByName("month_light", new SkinRawImageCallback<String>() {
+            @Override
+            public void onLookupSucceeded(String param, BufferedImage modelImage) {
+                try {
+                    ImageIO.write(modelImage, "PNG", new File("src\\test\\" + param + "-Helmet-Model.png"));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onLookupFailed(String param, Exception ex) {
+                ex.printStackTrace();
+            }
+        });
+    }
 }
