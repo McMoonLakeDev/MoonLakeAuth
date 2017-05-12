@@ -21,14 +21,33 @@ package com.minecraft.moonlake.auth.data;
 import java.util.Iterator;
 import java.util.List;
 
+/**
+ * <h1>StatusServiceList</h1>
+ * 状态服务列表类
+ *
+ * @version 1.0
+ * @author Month_Light
+ * @see StatusService
+ */
 public class StatusServiceList implements Iterable<StatusService> {
 
     private List<StatusService> serviceList;
 
+    /**
+     * 状态服务列表类构造函数
+     *
+     * @param serviceList 状态服务列表
+     */
     public StatusServiceList(List<StatusService> serviceList) {
         this.serviceList = serviceList;
     }
 
+    /**
+     * 获取指定域名的状态服务数据
+     *
+     * @param host 域名
+     * @return 状态服务数据
+     */
     public StatusService getByHost(String host) {
         for(Iterator<StatusService> iterator = iterator(); iterator().hasNext();) {
             StatusService service = iterator.next();
@@ -38,6 +57,11 @@ public class StatusServiceList implements Iterable<StatusService> {
         return null;
     }
 
+    /**
+     * 获取此状态服务列表的数量大小
+     *
+     * @return 数量大小
+     */
     public int size() {
         return serviceList.size();
     }

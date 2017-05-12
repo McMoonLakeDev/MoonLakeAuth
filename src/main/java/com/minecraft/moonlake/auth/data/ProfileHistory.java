@@ -18,28 +18,62 @@
 
 package com.minecraft.moonlake.auth.data;
 
+/**
+ * <h1>ProfileHistory</h1>
+ * 档案历史记录类
+ *
+ * @version 1.0
+ * @author Month_Light
+ * @see Comparable
+ */
 public class ProfileHistory implements Comparable<ProfileHistory> {
 
     private final String name;
     private final long changedToAt;
 
+    /**
+     * 档案历史记录类构造函数
+     *
+     * @param name 用户名
+     */
     public ProfileHistory(String name) {
         this(name, 0L);
     }
 
+    /**
+     * 档案历史记录类构造函数
+     *
+     * @param name 用户名
+     * @param changedToAt 改变时间戳
+     */
     public ProfileHistory(String name, long changedToAt) {
         this.name = name;
         this.changedToAt = changedToAt;
     }
 
+    /**
+     * 获取此档案历史记录的用户名
+     *
+     * @return 用户名
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * 获取此档案历史记录的改变时间戳
+     *
+     * @return 改变时间戳
+     */
     public long getChangedToAt() {
         return changedToAt;
     }
 
+    /**
+     * 获取此档案历史记录是否拥有改变时间戳
+     *
+     * @return 是否拥有改变时间戳
+     */
     public boolean hasChangedToAt() {
         return changedToAt > 0L;
     }

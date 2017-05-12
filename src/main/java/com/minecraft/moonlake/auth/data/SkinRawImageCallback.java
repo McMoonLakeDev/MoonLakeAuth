@@ -20,9 +20,29 @@ package com.minecraft.moonlake.auth.data;
 
 import java.awt.image.BufferedImage;
 
+/**
+ * <h1>SkinRawImageCallback</h1>
+ * 皮肤图片回调接口
+ *
+ * @param <T> 类型
+ * @version 1.0
+ * @author Month_Light
+ */
 public interface SkinRawImageCallback<T> {
 
+    /**
+     * 查找成功
+     *
+     * @param param 参数
+     * @param skinRawImage 图片
+     */
     void onLookupSucceeded(T param, BufferedImage skinRawImage);
 
+    /**
+     * 查找失败
+     *
+     * @param param 参数
+     * @param ex 异常
+     */
     void onLookupFailed(T param, Exception ex);
 }

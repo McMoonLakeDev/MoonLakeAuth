@@ -22,14 +22,33 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
+/**
+ * <h1>ProfileHistoryList</h1>
+ * 档案历史记录列表
+ *
+ * @version 1.0
+ * @author Month_Light
+ * @see ProfileHistory
+ * @see Iterable
+ */
 public class ProfileHistoryList implements Iterable<ProfileHistory> {
 
     private final List<ProfileHistory> historyList;
 
+    /**
+     * 档案历史记录列表构造函数
+     *
+     * @param historyList 历史记录列表
+     */
     public ProfileHistoryList(List<ProfileHistory> historyList) {
         this.historyList = historyList;
     }
 
+    /**
+     * 获取当前档案历史记录列表最新(当前)正在使用的档案
+     *
+     * @return 档案历史记录
+     */
     public ProfileHistory getLatest() {
         if(historyList.size() == 1)
             return historyList.get(0);
@@ -37,6 +56,11 @@ public class ProfileHistoryList implements Iterable<ProfileHistory> {
         return historyList.get(historyList.size() - 1);
     }
 
+    /**
+     * 获取此档案历史记录列表的数量大小
+     *
+     * @return 数量大小
+     */
     public int size() {
         return historyList.size();
     }

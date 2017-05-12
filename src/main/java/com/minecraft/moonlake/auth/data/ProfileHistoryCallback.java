@@ -20,6 +20,15 @@ package com.minecraft.moonlake.auth.data;
 
 import java.util.UUID;
 
+/**
+ * <h1>ProfileHistoryCallback</h1>
+ * 档案历史记录回调接口
+ *
+ * @version 1.0
+ * @author Month_Light
+ * @see ProfileHistory
+ * @see ProfileHistoryList
+ */
 public interface ProfileHistoryCallback {
 
     void onLookupSucceeded(UUID id, ProfileHistoryList historyList);

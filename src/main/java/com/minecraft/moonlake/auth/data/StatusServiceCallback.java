@@ -18,9 +18,28 @@
 
 package com.minecraft.moonlake.auth.data;
 
+/**
+ * <h1>状态服务类</h1>
+ * 状态服务回调接口
+ *
+ * @version 1.0
+ * @author Month_Light
+ * @see StatusService
+ * @see StatusServiceList
+ */
 public interface StatusServiceCallback {
 
+    /**
+     * 检测成功
+     *
+     * @param serviceList 状态服务列表
+     */
     void onCheckSucceeded(StatusServiceList serviceList);
 
+    /**
+     * 检测失败
+     *
+     * @param ex 异常
+     */
     void onCheckFailed(Exception ex);
 }

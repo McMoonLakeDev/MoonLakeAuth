@@ -18,9 +18,28 @@
 
 package com.minecraft.moonlake.auth.data;
 
+/**
+ * <h1>ProfileLookupCallback</h1>
+ * 档案查找回调接口
+ *
+ * @version 1.0
+ * @author Month_Light
+ * @see GameProfile
+ */
 public interface ProfileLookupCallback {
 
+    /**
+     * 查找成功
+     *
+     * @param profile 游戏档案
+     */
     void onLookupSucceeded(GameProfile profile);
 
+    /**
+     * 查找失败
+     *
+     * @param profile 游戏档案
+     * @param ex 异常
+     */
     void onLookupFailed(GameProfile profile, Exception ex);
 }

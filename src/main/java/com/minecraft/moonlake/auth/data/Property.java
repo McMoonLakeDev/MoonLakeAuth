@@ -25,38 +25,86 @@ import java.security.PublicKey;
 import java.security.Signature;
 import java.util.Base64;
 
+/**
+ * <h1>Property</h1>
+ * 游戏档案属性类
+ *
+ * @version 1.0
+ * @author Month_Light
+ * @see GameProfile
+ */
 public class Property {
 
     private String name;
     private String value;
     private String signature;
 
+    /**
+     * 游戏档案属性类构造函数
+     *
+     * @param name 名称
+     * @param value 值
+     */
     public Property(String name, String value) {
         this(name, value, null);
     }
 
+    /**
+     * 游戏档案属性类构造函数
+     *
+     * @param name 名称
+     * @param value 值
+     * @param signature 签名
+     */
     public Property(String name, String value, String signature) {
         this.name = name;
         this.value = value;
         this.signature = signature;
     }
 
+    /**
+     * 获取此游戏档案属性的名称
+     *
+     * @return 属性名称
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * 获取此游戏档案的属性值
+     *
+     * @return 属性值
+     */
     public String getValue() {
         return value;
     }
 
+    /**
+     * 获取此游戏档案的签名值
+     *
+     * @return 签名值
+     */
     public String getSignature() {
         return signature;
     }
 
+    /**
+     * 获取此游戏档案是否拥有签名值
+     *
+     * @return 是否拥有签名值
+     */
     public boolean hasSignature() {
         return signature != null;
     }
 
+    /**
+     * 验证此游戏档案的签名值
+     *
+     * @param key 公钥
+     * @return 是否验证成功
+     * @throws MoonLakeProfileException 如果验证时错误则抛出异常
+     */
     public boolean validateSignature(PublicKey key) throws MoonLakeProfileException {
         if(!hasSignature())
             return false;

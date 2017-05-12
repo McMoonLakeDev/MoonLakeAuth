@@ -22,6 +22,13 @@ import com.google.gson.annotations.Expose;
 
 import java.util.*;
 
+/**
+ * <h1>GameProfile</h1>
+ * Minecraft 游戏档案类
+ *
+ * @version 1.0
+ * @author Month_Light
+ */
 public class GameProfile {
 
     private UUID id;
@@ -33,34 +40,71 @@ public class GameProfile {
     @Expose(serialize = false, deserialize = false)
     private Map<TextureType, ProfileTexture> textures;
 
+    /**
+     * Minecraft 游戏档案类构造函数
+     *
+     * @param id 用户 Id
+     * @param name 用户名
+     */
     public GameProfile(String id, String name) {
         this.id = id != null && !id.equals("") ? UUID.fromString(id) : null;
         this.name = name;
     }
 
+    /**
+     * Minecraft 游戏档案类构造函数
+     *
+     * @param id 用户 Id
+     * @param name 用户名
+     */
     public GameProfile(UUID id, String name) {
         this.id = id;
         this.name = name;
     }
 
+    /**
+     * 获取此 Minecraft 游戏档案的用户 Id
+     *
+     * @return 用户 Id
+     */
     public UUID getId() {
         return id;
     }
 
+    /**
+     * 获取此 Minecraft 游戏档案的用户名
+     *
+     * @return 用户名
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * 获取此 Minecraft 游戏档案是否为旧版本 (<a href="https://help.mojang.com/customer/en/portal/articles/329530-changing-your-email-address-legacy-minecraft-accounts-", target="_blank">查看详情</a>)
+     *
+     * @return 是否为旧版本
+     */
     public boolean isLegacy() {
         return legacy;
     }
 
+    /**
+     * 获取此 Minecraft 游戏档案的属性列表
+     *
+     * @return 属性列表
+     */
     public List<Property> getProperties() {
         if(properties == null)
             this.properties = new ArrayList<>();
         return properties;
     }
 
+    /**
+     * 获取此 Minecraft 游戏档案指定名称的属性
+     *
+     * @return 属性
+     */
     public Property getProperty(String name) {
         for(Property property : getProperties())
             if(property.getName().equals(name))
@@ -68,12 +112,23 @@ public class GameProfile {
         return null;
     }
 
+    /**
+     * 获取此 Minecraft 游戏档案的材质
+     *
+     * @return 材质
+     */
     public Map<TextureType, ProfileTexture> getTextures() {
         if(textures == null)
             this.textures = new HashMap<>();
         return textures;
     }
 
+    /**
+     * 获取此 Minecraft 游戏档案指定材质类型的材质档案
+     *
+     * @param type 材质类型
+     * @return 材质档案
+     */
     public ProfileTexture getTexture(TextureType type) {
         return textures != null ? textures.get(type) : null;
     }

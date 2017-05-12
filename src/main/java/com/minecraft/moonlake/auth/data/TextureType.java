@@ -18,10 +18,26 @@
 
 package com.minecraft.moonlake.auth.data;
 
+/**
+ * <h1>TextureType</h1>
+ * 材质类型
+ *
+ * @version 1.0
+ * @author Month_Light
+ */
 public enum TextureType {
 
+    /**
+     * 材质类型: 皮肤
+     */
     SKIN,
+    /**
+     * 材质类型: 披风
+     */
     CAPE,
+    /**
+     * 材质类型: 鞘翅
+     */
     ELYTRA,
     ;
 }

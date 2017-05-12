@@ -18,24 +18,53 @@
 
 package com.minecraft.moonlake.auth.data;
 
+/**
+ * <h1>StatusService</h1>
+ * 状态服务类
+ *
+ * @version 1.0
+ * @author Month_Light
+ * @see Comparable
+ */
 public class StatusService implements Comparable<StatusService.Type> {
 
     private final String host;
     private final Type type;
 
+    /**
+     * 状态服务类构造函数
+     *
+     * @param host 域名
+     * @param type 状态类型
+     */
     public StatusService(String host, Type type) {
         this.host = host;
         this.type = type;
     }
 
+    /**
+     * 获取此状态服务的域名
+     *
+     * @return 域名
+     */
     public String getHost() {
         return host;
     }
 
+    /**
+     * 获取此状态服务的状态类型
+     *
+     * @return 状态类型
+     */
     public Type getType() {
         return type;
     }
 
+    /**
+     * 获取此状态服务是否不可用
+     *
+     * @return 是否不可用
+     */
     public boolean isUnavailable() {
         return type == Type.RED;
     }
@@ -75,13 +104,32 @@ public class StatusService implements Comparable<StatusService.Type> {
         return type.compareTo(other);
     }
 
+    /**
+     * <h1>Type</h1>
+     * 状态服务类型
+     */
     public enum Type {
 
+        /**
+         * 状态服务类型: 绿色 (无问题)
+         */
         GREEN,
+        /**
+         * 状态服务类型: 黄色 (小问题)
+         */
         YELLOW,
+        /**
+         * 状态服务类型: 红色 (不可用)
+         */
         RED,
         ;
 
+        /**
+         * 从指定名称获取状态服务类型
+         *
+         * @param name 名称
+         * @return Type | null
+         */
         public static Type fromName(String name) {
             switch (name.toLowerCase()) {
                 case "green":

@@ -18,26 +18,66 @@
 
 package com.minecraft.moonlake.auth.data;
 
+import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * <h1>ProfileTexture</h1>
+ * 档案材质类
+ *
+ * @version 1.0
+ * @author Month_Light
+ * @see GameProfile
+ */
 public class ProfileTexture {
 
     private final String url;
     private final Map<String, String> metadata;
 
+    /**
+     * 档案材质类构造函数
+     *
+     * @param url 链接
+     * @param metadata 元数据
+     */
     public ProfileTexture(String url, Map<String, String> metadata) {
         this.url = url;
         this.metadata = metadata;
     }
 
+    /**
+     * 获取此档案材质的 URL 链接
+     *
+     * @return 链接
+     */
     public String getUrl() {
         return url;
     }
 
+    /**
+     * 获取此档案材质的元数据
+     *
+     * @return 元数据
+     */
+    public Map<String, String> getMetadata() {
+        if(metadata == null)
+            return new HashMap<>();
+        return metadata;
+    }
+
+    /**
+     * 获取此档案材质指定名称的元数据
+     *
+     * @param name 名称
+     * @return 元数据
+     */
     public String getMetadata(String name) {
         return metadata != null ? metadata.get(name) : null;
     }
 
+    /**
+     * 获取此档案材质的哈希值
+     */
     public String getHash() {
         String url = this.url.endsWith("/") ? this.url.substring(0, this.url.length() - 1) : this.url;
         int lash = url.lastIndexOf("/");
