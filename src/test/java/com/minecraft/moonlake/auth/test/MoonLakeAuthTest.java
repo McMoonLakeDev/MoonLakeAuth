@@ -39,7 +39,7 @@ import java.util.UUID;
 public class MoonLakeAuthTest {
 
     public static void main(String[] args) throws Exception {
-        // Minecraft 登录服务实现方法
+        // Minecraft 认证服务实现方法
         // 详情查看在线的 wiki 维基百科
         // http://wiki.vg/Mojang_API
         // http://wiki.vg/Authentication

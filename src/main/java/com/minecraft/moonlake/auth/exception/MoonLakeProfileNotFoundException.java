@@ -18,21 +18,48 @@
 
 package com.minecraft.moonlake.auth.exception;
 
+/**
+ * <h1>MoonLakeProfileNotFoundException</h1>
+ * 游戏档案不存在异常
+ *
+ * @version 1.0
+ * @author Month_Light
+ * @see MoonLakeProfileException
+ */
 public class MoonLakeProfileNotFoundException extends MoonLakeProfileException {
 
     private static final long serialVersionUID = 8398382809558438203L;
 
+    /**
+     * MoonLakeProfileNotFoundException
+     */
     public MoonLakeProfileNotFoundException() {
     }
 
+    /**
+     * MoonLakeProfileNotFoundException
+     *
+     * @param message 异常消息
+     */
     public MoonLakeProfileNotFoundException(String message) {
         super(message);
     }
 
+    /**
+     * MoonLakeProfileNotFoundException
+     *
+     * @param message 异常消息
+     * @param cause 原因
+     */
     public MoonLakeProfileNotFoundException(String message, Throwable cause) {
         super(message, cause);
     }
 
+    /**
+     * MoonLakeProfileNotFoundException
+     *
+     * @param cause 原因
+     */
     public MoonLakeProfileNotFoundException(Throwable cause) {
         super(cause);
     }

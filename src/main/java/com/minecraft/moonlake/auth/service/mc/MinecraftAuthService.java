@@ -35,6 +35,14 @@ import java.security.PublicKey;
 import java.security.spec.X509EncodedKeySpec;
 import java.util.*;
 
+/**
+ * <h1>MinecraftAuthService</h1>
+ * Minecraft 认证服务类
+ *
+ * @version 1.0
+ * @author Month_Light
+ * @see MoonLakeAuthBaseService
+ */
 public class MinecraftAuthService extends MoonLakeAuthBaseService {
 
     private final static String URL_JOIN = "https://sessionserver.mojang.com/session/minecraft/join";
@@ -66,14 +74,34 @@ public class MinecraftAuthService extends MoonLakeAuthBaseService {
         }
     }
 
+    /**
+     * Minecraft 认证服务类构造函数
+     */
     public MinecraftAuthService() {
         super();
     }
 
+    /**
+     * Minecraft 认证服务类构造函数
+     *
+     * @param proxy 代理对象
+     * @throws IllegalArgumentException 如果代理对象为 {@code null} 则抛出异常
+     */
     public MinecraftAuthService(Proxy proxy) {
         super(proxy);
     }
 
+    /**
+     * 向指定 Minecraft 服务器发送加入服务器请求
+     *
+     * @param profile 游戏档案
+     * @param accessToken 访问令牌
+     * @param serverId 服务器 Id
+     * @throws MoonLakeRequestException 如果请求错误则抛出异常
+     * @throws IllegalArgumentException 如果游戏档案对象为 {@code null} 则抛出异常
+     * @throws IllegalArgumentException 如果访问令牌对象为 {@code null} 则抛出异常
+     * @throws IllegalArgumentException 如果服务器 Id 对象为 {@code null} 则抛出异常
+     */
     public void joinServerRequest(GameProfile profile, String accessToken, String serverId) throws MoonLakeRequestException {
         validate(profile, "游戏档案对象不能为 null 值.");
         validate(accessToken, "访问令牌对象不能为 null 值.");
@@ -82,6 +110,16 @@ public class MinecraftAuthService extends MoonLakeAuthBaseService {
         makeRequest(getProxy(), URL_JOIN, request);
     }
 
+    /**
+     * 从指定 Minecraft 服务器获取指定用户名的游戏档案数据
+     *
+     * @param name 用户名
+     * @param serverId 服务器 Id
+     * @return 用户的游戏档案
+     * @throws MoonLakeRequestException 如果请求错误则抛出异常
+     * @throws IllegalArgumentException 如果用户名对象为 {@code null} 则抛出异常
+     * @throws IllegalArgumentException 如果服务器 Id 对象为 {@code null} 则抛出异常
+     */
     public GameProfile getProfileByServer(String name, String serverId) throws MoonLakeRequestException {
         validate(name, "用户名对象不能为 null 值.");
         validate(serverId, "目标服务器 Id 对象不能为 null 值.");
@@ -95,6 +133,15 @@ public class MinecraftAuthService extends MoonLakeAuthBaseService {
         return null;
     }
 
+    /**
+     * 从 HTTP 请求填充指定游戏档案的属性数据
+     *
+     * @param profile 游戏档案
+     * @return 游戏档案
+     * @throws MoonLakeProfileException 如果档案错误则抛出异常
+     * @throws MoonLakeProfileNotFoundException 如果档案不存在则抛出异常
+     * @throws IllegalArgumentException 如果游戏档案对象为 {@code null} 则抛出异常
+     */
     public GameProfile fillProfileProperties(GameProfile profile) throws MoonLakeProfileException {
         validate(profile, "游戏档案对象不能为 null 值.");
         if(profile.getId() == null)
@@ -113,20 +160,54 @@ public class MinecraftAuthService extends MoonLakeAuthBaseService {
         }
     }
 
+    /**
+     * 从档案的属性数据填充指定游戏档案的材质数据
+     *
+     * @param profile 游戏档案
+     * @return 游戏档案
+     * @throws MoonLakeProfileException 如果档案错误则抛出异常
+     * @throws IllegalArgumentException 如果游戏档案对象为 {@code null} 则抛出异常
+     */
     public GameProfile fillProfileTextures(GameProfile profile) throws MoonLakeProfileException {
         return fillProfileTextures(profile, true);
     }
 
+    /**
+     * 从档案的属性数据填充指定游戏档案的材质数据
+     *
+     * @param profile 游戏档案
+     * @param requireSecure 是否验证签名
+     * @return 游戏档案
+     * @throws MoonLakeProfileException 如果档案错误则抛出异常
+     * @throws IllegalArgumentException 如果游戏档案对象为 {@code null} 则抛出异常
+     */
     public GameProfile fillProfileTextures(GameProfile profile, boolean requireSecure) throws MoonLakeProfileException {
         Map<TextureType, ProfileTexture> textures = getProfileTextures(profile, requireSecure);
         profile.getTextures().putAll(textures);
         return profile;
     }
 
+    /**
+     * 获取指定游戏档案的材质属性 Map 集
+     *
+     * @param profile 游戏档案
+     * @return 材质属性 Map 集
+     * @throws MoonLakeProfileException 如果档案错误则抛出异常
+     * @throws IllegalArgumentException 如果游戏档案对象为 {@code null} 则抛出异常
+     */
     public Map<TextureType, ProfileTexture> getProfileTextures(GameProfile profile) throws MoonLakeProfileException {
         return getProfileTextures(profile, true);
     }
 
+    /**
+     * 获取指定游戏档案的材质属性 Map 集
+     *
+     * @param profile 游戏档案
+     * @param requireSecure 是否验证签名
+     * @return 材质属性 Map 集
+     * @throws MoonLakeProfileException 如果档案错误则抛出异常
+     * @throws IllegalArgumentException 如果游戏档案对象为 {@code null} 则抛出异常
+     */
     public Map<TextureType, ProfileTexture> getProfileTextures(GameProfile profile, boolean requireSecure) throws MoonLakeProfileException {
         validate(profile, "游戏档案对象不能为 null 值.");
         Property property = profile.getProperty("textures");
@@ -151,6 +232,9 @@ public class MinecraftAuthService extends MoonLakeAuthBaseService {
         return textures;
     }
 
+    /**
+     * 加入服务器请求实体类
+     */
     private static class JoinServerRequest {
         private String accessToken;
         private UUID selectedProfile;
@@ -163,17 +247,26 @@ public class MinecraftAuthService extends MoonLakeAuthBaseService {
         }
     }
 
+    /**
+     * 是否已加入响应实体类
+     */
     private static class HasJoinedResponse extends MojangBaseResponse {
         public UUID id;
         public List<Property> properties;
     }
 
+    /**
+     * Minecraft 游戏档案响应类
+     */
     private static class MinecraftProfileResponse extends MojangBaseResponse {
         public UUID id;
         public String name;
         public List<Property> properties;
     }
 
+    /**
+     * Minecraft 材质酬载实体类
+     */
     private static class MinecraftTexturesPayload {
         public long timestamp;
         public UUID profileId;

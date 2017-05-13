@@ -18,21 +18,48 @@
 
 package com.minecraft.moonlake.auth.exception;
 
+/**
+ * <h1>MoonLakeSkinNotFoundException</h1>
+ * 皮肤不存在异常
+ *
+ * @version 1.0
+ * @author Month_Light
+ * @see MoonLakeSkinException
+ */
 public class MoonLakeSkinNotFoundException extends MoonLakeSkinException {
 
     private static final long serialVersionUID = -7458122820159366998L;
 
+    /**
+     * MoonLakeSkinNotFoundException
+     */
     public MoonLakeSkinNotFoundException() {
     }
 
+    /**
+     * MoonLakeSkinNotFoundException
+     *
+     * @param message 异常消息
+     */
     public MoonLakeSkinNotFoundException(String message) {
         super(message);
     }
 
+    /**
+     * MoonLakeSkinNotFoundException
+     *
+     * @param message 异常消息
+     * @param cause 原因
+     */
     public MoonLakeSkinNotFoundException(String message, Throwable cause) {
         super(message, cause);
     }
 
+    /**
+     * MoonLakeSkinNotFoundException
+     *
+     * @param cause 原因
+     */
     public MoonLakeSkinNotFoundException(Throwable cause) {
         super(cause);
     }

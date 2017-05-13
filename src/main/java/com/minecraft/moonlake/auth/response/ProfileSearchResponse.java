@@ -23,17 +23,41 @@ import com.minecraft.moonlake.auth.data.GameProfile;
 
 import java.lang.reflect.Type;
 
+/**
+ * <h1>ProfileSearchResponse</h1>
+ * 档案搜索响应类
+ *
+ * @version 1.0
+ * @author Month_Light
+ * @see MojangBaseResponse
+ */
 public class ProfileSearchResponse extends MojangBaseResponse {
 
     private GameProfile[] profiles;
 
+    /**
+     * 档案搜索响应类构造函数
+     */
     public ProfileSearchResponse() {
     }
 
+    /**
+     * 获取此档案搜索响应的游戏档案数组
+     *
+     * @return 游戏档案数组
+     */
     public GameProfile[] getProfiles() {
         return profiles;
     }
 
+    /**
+     * <h1>Serializer</h1>
+     * 档案搜索响应序列化类
+     *
+     * @version 1.0
+     * @author Month_Light
+     * @see JsonDeserializer
+     */
     public final static class Serializer implements JsonDeserializer<ProfileSearchResponse> {
 
         @Override

@@ -37,6 +37,14 @@ import java.net.URL;
 import java.util.*;
 import java.util.List;
 
+/**
+ * <h1>ProfileAuthService</h1>
+ * 档案认证服务类
+ *
+ * @version 1.0
+ * @author Month_Light
+ * @see MoonLakeAuthBaseService
+ */
 public class ProfileAuthService extends MoonLakeAuthBaseService {
 
     private final static String URL_PROFILES = "https://api.mojang.com/profiles/minecraft";
@@ -47,27 +55,70 @@ public class ProfileAuthService extends MoonLakeAuthBaseService {
     private final static int DELAY_BETWEEN_FAILURES = 750;
     private final static int PROFILES_PER_REQUEST = 100;
 
+    /**
+     * 档案认证服务类构造函数
+     */
     public ProfileAuthService() {
         super();
     }
 
+    /**
+     * 档案认证服务类构造函数
+     *
+     * @param proxy 代理对象
+     * @throws IllegalArgumentException 如果代理对象为 {@code null} 则抛出异常
+     */
     public ProfileAuthService(Proxy proxy) {
         super(proxy);
     }
 
+    /**
+     * 从指定用户名向 HTTP 查找游戏档案数据
+     *
+     * @param name 用户名
+     * @param callback 游戏档案回调对象
+     * @throws IllegalArgumentException 如果用户名对象为 {@code null} 则抛出异常
+     * @throws IllegalArgumentException 如果游戏档案回调对象为 {@code null} 则抛出异常
+     */
     public void findProfileByName(final String name, final ProfileLookupCallback callback) {
         findProfileByName(name, callback, false);
     }
 
+    /**
+     * 从指定用户名向 HTTP 查找游戏档案数据
+     *
+     * @param name 用户名
+     * @param callback 游戏档案回调对象
+     * @param async 是否异步
+     * @throws IllegalArgumentException 如果用户名对象为 {@code null} 则抛出异常
+     * @throws IllegalArgumentException 如果游戏档案回调对象为 {@code null} 则抛出异常
+     */
     public void findProfileByName(final String name, final ProfileLookupCallback callback, boolean async) {
         validate(name, "名称对象不能为 null 值.");
         findProfilesByName(new String[] { name }, callback, async);
     }
 
+    /**
+     * 从指定用户名数组向 HTTP 查找游戏档案数据
+     *
+     * @param names 用户名数组
+     * @param callback 游戏档案回调对象
+     * @throws IllegalArgumentException 如果用户名数组对象为 {@code null} 则抛出异常
+     * @throws IllegalArgumentException 如果游戏档案回调对象为 {@code null} 则抛出异常
+     */
     public void findProfilesByName(final String[] names, final ProfileLookupCallback callback) {
         findProfilesByName(names, callback, false);
     }
 
+    /**
+     * 从指定用户名数组向 HTTP 查找游戏档案数据
+     *
+     * @param names 用户名数组
+     * @param callback 游戏档案回调对象
+     * @param async 是否异步
+     * @throws IllegalArgumentException 如果用户名数组对象为 {@code null} 则抛出异常
+     * @throws IllegalArgumentException 如果游戏档案回调对象为 {@code null} 则抛出异常
+     */
     public void findProfilesByName(final String[] names, final ProfileLookupCallback callback, boolean async) {
         validate(names, "名称数组不能为 null 值.");
         validate(callback, "游戏档案查询回调对象不能为 null 值.");
@@ -117,18 +168,54 @@ public class ProfileAuthService extends MoonLakeAuthBaseService {
         start(runnable, async);
     }
 
+    /**
+     * 从指定时间戳向 HTTP 查找指定用户名的游戏档案数据
+     *
+     * @param name 用户名
+     * @param callback 游戏档案回调对象
+     * @throws IllegalArgumentException 如果用户名对象为 {@code null} 则抛出异常
+     * @throws IllegalArgumentException 如果游戏档案回调对象为 {@code null} 则抛出异常
+     */
     public void findProfileByTimestamp(String name, ProfileLookupCallback callback) {
         findProfileByTimestamp(name, callback, false);
     }
 
+    /**
+     * 从指定时间戳向 HTTP 查找指定用户名的游戏档案数据
+     *
+     * @param name 用户名
+     * @param callback 游戏档案回调对象
+     * @param async 是否异步
+     * @throws IllegalArgumentException 如果用户名对象为 {@code null} 则抛出异常
+     * @throws IllegalArgumentException 如果游戏档案回调对象为 {@code null} 则抛出异常
+     */
     public void findProfileByTimestamp(String name, ProfileLookupCallback callback, boolean async) {
         findProfileByTimestamp(name, -1L, callback, async);
     }
 
+    /**
+     * 从指定时间戳向 HTTP 查找指定用户名的游戏档案数据
+     *
+     * @param name 用户名
+     * @param timestamp 时间戳
+     * @param callback 游戏档案回调对象
+     * @throws IllegalArgumentException 如果用户名对象为 {@code null} 则抛出异常
+     * @throws IllegalArgumentException 如果游戏档案回调对象为 {@code null} 则抛出异常
+     */
     public void findProfileByTimestamp(String name, long timestamp, ProfileLookupCallback callback) {
         findProfileByTimestamp(name, timestamp, callback, false);
     }
 
+    /**
+     * 从指定时间戳向 HTTP 查找指定用户名的游戏档案数据
+     *
+     * @param name 用户名
+     * @param timestamp 时间戳
+     * @param callback 游戏档案回调对象
+     * @param async 是否异步
+     * @throws IllegalArgumentException 如果用户名对象为 {@code null} 则抛出异常
+     * @throws IllegalArgumentException 如果游戏档案回调对象为 {@code null} 则抛出异常
+     */
     public void findProfileByTimestamp(String name, long timestamp, ProfileLookupCallback callback, boolean async) {
         validate(name, "名称对象不能为 null 值.");
         validate(callback, "游戏档案查询回调对象不能为 null 值.");
@@ -147,20 +234,54 @@ public class ProfileAuthService extends MoonLakeAuthBaseService {
         start(runnable, async);
     }
 
+    /**
+     * 从指定游戏档案向 HTTP 查找档案名称历史记录
+     *
+     * @param profile 游戏档案
+     * @param callback 档案历史记录回调对象
+     * @throws IllegalArgumentException 如果游戏档案对象为 {@code null} 则抛出异常
+     * @throws IllegalArgumentException 如果档案历史记录回调对象为 {@code null} 则抛出异常
+     */
     public void findNameHistoryByProfile(GameProfile profile, ProfileHistoryCallback callback) {
         findNameHistoryByProfile(profile, callback, false);
     }
 
+    /**
+     * 从指定游戏档案向 HTTP 查找档案名称历史记录
+     *
+     * @param profile 游戏档案
+     * @param callback 档案历史记录回调对象
+     * @param async 是否异步
+     * @throws IllegalArgumentException 如果游戏档案对象为 {@code null} 则抛出异常
+     * @throws IllegalArgumentException 如果档案历史记录回调对象为 {@code null} 则抛出异常
+     */
     public void findNameHistoryByProfile(GameProfile profile, ProfileHistoryCallback callback, boolean async) {
         validate(profile, "游戏档案对象不能为 null 值.");
         validate(callback, "档案历史回调对象不能为 null 值.");
         findNameHistoryById(profile.getId(), callback, async);
     }
 
+    /**
+     * 从指定用户 UUID 向 HTTP 查找档案名称历史记录
+     *
+     * @param id 用户 Id
+     * @param callback 档案历史记录回调对象
+     * @throws IllegalArgumentException 如果用户 Id 对象为 {@code null} 则抛出异常
+     * @throws IllegalArgumentException 如果档案历史记录回调对象为 {@code null} 则抛出异常
+     */
     public void findNameHistoryById(UUID id, ProfileHistoryCallback callback) {
         findNameHistoryById(id, callback, false);
     }
 
+    /**
+     * 从指定用户 UUID 向 HTTP 查找档案名称历史记录
+     *
+     * @param id 用户 Id
+     * @param callback 档案历史记录回调对象
+     * @param async 是否异步
+     * @throws IllegalArgumentException 如果用户 Id 对象为 {@code null} 则抛出异常
+     * @throws IllegalArgumentException 如果档案历史记录回调对象为 {@code null} 则抛出异常
+     */
     public void findNameHistoryById(UUID id, ProfileHistoryCallback callback, boolean async) {
         validate(id, "目标 UUID 对象不能为 null 值.");
         final String finalUrl = String.format(URL_PROFILE_HISTORY, UUIDSerializer.fromUUID(id));
@@ -178,10 +299,29 @@ public class ProfileAuthService extends MoonLakeAuthBaseService {
         start(runnable, async);
     }
 
+    /**
+     * 从指定用户名向 HTTP 查找用户的皮肤源图片
+     *
+     * @param name 用户名
+     * @param callback 皮肤源图片回调对象
+     * @throws MoonLakeAuthException 如果认证错误则抛出异常
+     * @throws IllegalArgumentException 如果用户名对象为 {@code null} 则抛出异常
+     * @throws IllegalArgumentException 如果皮肤源图片回调对象为 {@code null} 则抛出异常
+     */
     public void findSkinRawTextureByName(String name, SkinRawImageCallback<String> callback) throws MoonLakeAuthException {
         findSkinRawTextureByName(name, callback, false);
     }
 
+    /**
+     * 从指定用户名向 HTTP 查找用户的皮肤源图片
+     *
+     * @param name 用户名
+     * @param callback 皮肤源图片回调对象
+     * @param async 是否异步
+     * @throws MoonLakeAuthException 如果认证错误则抛出异常
+     * @throws IllegalArgumentException 如果用户名对象为 {@code null} 则抛出异常
+     * @throws IllegalArgumentException 如果皮肤源图片回调对象为 {@code null} 则抛出异常
+     */
     public void findSkinRawTextureByName(String name, SkinRawImageCallback<String> callback, boolean async) throws MoonLakeAuthException {
         validate(name, "用户名对象不能为 null 值.");
         validate(callback, "皮肤源图片回调对象不能为 null 值.");
@@ -218,10 +358,29 @@ public class ProfileAuthService extends MoonLakeAuthBaseService {
         start(runnable, async);
     }
 
+    /**
+     * 从指定游戏档案查找用户的皮肤源图片, 如果档案不存在皮肤则请求 HTTP 获取数据
+     *
+     * @param profile 游戏
+     * @param callback 皮肤源图片回调对象
+     * @throws MoonLakeAuthException 如果认证错误则抛出异常
+     * @throws IllegalArgumentException 如果游戏档案对象为 {@code null} 则抛出异常
+     * @throws IllegalArgumentException 如果皮肤源图片回调对象为 {@code null} 则抛出异常
+     */
     public void findSkinRawTextureByProfile(GameProfile profile, SkinRawImageCallback<GameProfile> callback) throws MoonLakeAuthException {
         findSkinRawTextureByProfile(profile, callback, false);
     }
 
+    /**
+     * 从指定游戏档案查找用户的皮肤源图片, 如果档案不存在皮肤则请求 HTTP 获取数据
+     *
+     * @param profile 游戏
+     * @param callback 皮肤源图片回调对象
+     * @param async 是否异步
+     * @throws MoonLakeAuthException 如果认证错误则抛出异常
+     * @throws IllegalArgumentException 如果游戏档案对象为 {@code null} 则抛出异常
+     * @throws IllegalArgumentException 如果皮肤源图片回调对象为 {@code null} 则抛出异常
+     */
     public void findSkinRawTextureByProfile(GameProfile profile, SkinRawImageCallback<GameProfile> callback, boolean async) throws MoonLakeAuthException {
         validate(profile, "游戏档案对象不能为 null 值.");
         validate(callback, "皮肤源图片回调对象不能为 null 值.");
@@ -256,6 +415,14 @@ public class ProfileAuthService extends MoonLakeAuthBaseService {
         start(runnable, async);
     }
 
+    /**
+     * 从指定游戏档案获取用户的皮肤源图片
+     *
+     * @param profile 游戏档案
+     * @throws MoonLakeSkinException 如果皮肤错误则抛出异常
+     * @throws MoonLakeSkinNotFoundException 如果游戏档案不存在皮肤则抛出异常
+     * @throws IllegalArgumentException 如果游戏档案对象为 {@code null} 则抛出异常
+     */
     public BufferedImage getSkinRawTextureByProfile(GameProfile profile) throws MoonLakeSkinException {
         validate(profile, "游戏档案对象不能为 null 值.");
         try {
@@ -269,18 +436,60 @@ public class ProfileAuthService extends MoonLakeAuthBaseService {
         }
     }
 
+    /**
+     * 从指定用户名向 HTTP 查找用户的皮肤头像图片
+     *
+     * @param name 用户名
+     * @param callback 皮肤头像图片回调对象
+     * @throws MoonLakeSkinException 如果皮肤错误则抛出异常
+     * @throws IllegalArgumentException 如果用户名对象为 {@code null} 则抛出异常
+     * @throws IllegalArgumentException 如果皮肤头像图片回调对象为 {@code null} 则抛出异常
+     */
     public void findSkinHeadTextureByName(String name, SkinRawImageCallback<String> callback) throws MoonLakeSkinException {
         findSkinHeadTextureByName(name, 8, callback);
     }
 
+    /**
+     * 从指定用户名向 HTTP 查找用户的皮肤头像图片
+     *
+     * @param name 用户名
+     * @param callback 皮肤头像图片回调对象
+     * @param zoom 放大倍数 (默认 8 倍, 64x64 像素)
+     * @throws MoonLakeSkinException 如果皮肤错误则抛出异常
+     * @throws IllegalArgumentException 如果用户名对象为 {@code null} 则抛出异常
+     * @throws IllegalArgumentException 如果皮肤头像图片回调对象为 {@code null} 则抛出异常
+     */
     public void findSkinHeadTextureByName(String name, int zoom, SkinRawImageCallback<String> callback) throws MoonLakeSkinException {
         findSkinHeadTextureByName(name, zoom, true, callback);
     }
 
+    /**
+     * 从指定用户名向 HTTP 查找用户的皮肤头像图片
+     *
+     * @param name 用户名
+     * @param callback 皮肤头像图片回调对象
+     * @param zoom 放大倍数 (默认 8 倍, 64x64 像素)
+     * @param helmet 是否绘制外层皮肤 (默认为 true)
+     * @throws MoonLakeSkinException 如果皮肤错误则抛出异常
+     * @throws IllegalArgumentException 如果用户名对象为 {@code null} 则抛出异常
+     * @throws IllegalArgumentException 如果皮肤头像图片回调对象为 {@code null} 则抛出异常
+     */
     public void findSkinHeadTextureByName(String name, int zoom, boolean helmet, SkinRawImageCallback<String> callback) throws MoonLakeSkinException {
         findSkinHeadTextureByName(name, zoom, helmet, callback, false);
     }
 
+    /**
+     * 从指定用户名向 HTTP 查找用户的皮肤头像图片
+     *
+     * @param name 用户名
+     * @param callback 皮肤头像图片回调对象
+     * @param zoom 放大倍数 (默认 8 倍, 64x64 像素)
+     * @param helmet 是否绘制外层皮肤 (默认为 true)
+     * @param async 是否异步
+     * @throws MoonLakeSkinException 如果皮肤错误则抛出异常
+     * @throws IllegalArgumentException 如果用户名对象为 {@code null} 则抛出异常
+     * @throws IllegalArgumentException 如果皮肤头像图片回调对象为 {@code null} 则抛出异常
+     */
     public void findSkinHeadTextureByName(String name, int zoom, boolean helmet, SkinRawImageCallback<String> callback, boolean async) throws MoonLakeSkinException {
         validate(name, "用户名对象不能为 null 值.");
         validate(callback, "皮肤源图片回调对象不能为 null 值.");
@@ -317,18 +526,60 @@ public class ProfileAuthService extends MoonLakeAuthBaseService {
         start(runnable, async);
     }
 
+    /**
+     * 从指定游戏档案查找用户的皮肤头像图片, 如果档案不存在皮肤则请求 HTTP 获取数据
+     *
+     * @param profile 游戏档案
+     * @param callback 皮肤头像图片回调对象
+     * @throws MoonLakeSkinException 如果皮肤错误则抛出异常
+     * @throws IllegalArgumentException 如果游戏档案对象为 {@code null} 则抛出异常
+     * @throws IllegalArgumentException 如果皮肤头像图片回调对象为 {@code null} 则抛出异常
+     */
     public void findSkinHeadTextureByProfile(GameProfile profile, SkinRawImageCallback<GameProfile> callback) throws MoonLakeSkinException {
         findSkinHeadTextureByProfile(profile, 8, callback);
     }
 
+    /**
+     * 从指定游戏档案查找用户的皮肤头像图片, 如果档案不存在皮肤则请求 HTTP 获取数据
+     *
+     * @param profile 游戏档案
+     * @param callback 皮肤头像图片回调对象
+     * @param zoom 放大倍数 (默认 8 倍, 64x64 像素)
+     * @throws MoonLakeSkinException 如果皮肤错误则抛出异常
+     * @throws IllegalArgumentException 如果游戏档案对象为 {@code null} 则抛出异常
+     * @throws IllegalArgumentException 如果皮肤头像图片回调对象为 {@code null} 则抛出异常
+     */
     public void findSkinHeadTextureByProfile(GameProfile profile, int zoom, SkinRawImageCallback<GameProfile> callback) throws MoonLakeSkinException {
         findSkinHeadTextureByProfile(profile, zoom, true, callback);
     }
 
+    /**
+     * 从指定游戏档案查找用户的皮肤头像图片, 如果档案不存在皮肤则请求 HTTP 获取数据
+     *
+     * @param profile 游戏档案
+     * @param callback 皮肤头像图片回调对象
+     * @param zoom 放大倍数 (默认 8 倍, 64x64 像素)
+     * @param helmet 是否绘制外层皮肤 (默认为 true)
+     * @throws MoonLakeSkinException 如果皮肤错误则抛出异常
+     * @throws IllegalArgumentException 如果游戏档案对象为 {@code null} 则抛出异常
+     * @throws IllegalArgumentException 如果皮肤头像图片回调对象为 {@code null} 则抛出异常
+     */
     public void findSkinHeadTextureByProfile(GameProfile profile, int zoom, boolean helmet, SkinRawImageCallback<GameProfile> callback) throws MoonLakeSkinException {
         findSkinHeadTextureByProfile(profile, zoom, helmet, callback, false);
     }
 
+    /**
+     * 从指定游戏档案查找用户的皮肤头像图片, 如果档案不存在皮肤则请求 HTTP 获取数据
+     *
+     * @param profile 游戏档案
+     * @param callback 皮肤头像图片回调对象
+     * @param zoom 放大倍数 (默认 8 倍, 64x64 像素)
+     * @param helmet 是否绘制外层皮肤 (默认为 true)
+     * @param async 是否异步
+     * @throws MoonLakeSkinException 如果皮肤错误则抛出异常
+     * @throws IllegalArgumentException 如果游戏档案对象为 {@code null} 则抛出异常
+     * @throws IllegalArgumentException 如果皮肤头像图片回调对象为 {@code null} 则抛出异常
+     */
     public void findSkinHeadTextureByProfile(GameProfile profile, int zoom, boolean helmet, SkinRawImageCallback<GameProfile> callback, boolean async) throws MoonLakeSkinException {
         validate(profile, "游戏档案对象不能为 null 值.");
         validate(callback, "皮肤源图片回调对象不能为 null 值.");
@@ -365,28 +616,82 @@ public class ProfileAuthService extends MoonLakeAuthBaseService {
         start(runnable, async);
     }
 
+    /**
+     * 从指定游戏档案获取用户的皮肤头像图片
+     *
+     * @param profile 游戏档案
+     * @throws MoonLakeSkinException 如果皮肤错误则抛出异常
+     * @throws MoonLakeSkinNotFoundException 如果游戏档案不存在皮肤则抛出异常
+     * @throws IllegalArgumentException 如果游戏档案对象为 {@code null} 则抛出异常
+     */
     public BufferedImage getSkinHeadTextureByProfile(GameProfile profile) throws MoonLakeSkinException {
         return getSkinHeadTextureByProfile(profile, 8);
     }
 
+    /**
+     * 从指定游戏档案获取用户的皮肤头像图片
+     *
+     * @param profile 游戏档案
+     * @param zoom 放大倍数 (默认 8 倍, 64x64 像素)
+     * @throws MoonLakeSkinException 如果皮肤错误则抛出异常
+     * @throws MoonLakeSkinNotFoundException 如果游戏档案不存在皮肤则抛出异常
+     * @throws IllegalArgumentException 如果游戏档案对象为 {@code null} 则抛出异常
+     */
     public BufferedImage getSkinHeadTextureByProfile(GameProfile profile, int zoom) throws MoonLakeSkinException {
         return getSkinHeadTextureByProfile(profile, zoom, true);
     }
 
+    /**
+     * 从指定游戏档案获取用户的皮肤头像图片
+     *
+     * @param profile 游戏档案
+     * @param zoom 放大倍数 (默认 8 倍, 64x64 像素)
+     * @param helmet 是否绘制外层皮肤 (默认为 true)
+     * @throws MoonLakeSkinException 如果皮肤错误则抛出异常
+     * @throws MoonLakeSkinNotFoundException 如果游戏档案不存在皮肤则抛出异常
+     * @throws IllegalArgumentException 如果游戏档案对象为 {@code null} 则抛出异常
+     */
     public BufferedImage getSkinHeadTextureByProfile(GameProfile profile, int zoom, boolean helmet) throws MoonLakeSkinException {
         validate(profile, "游戏档案对象不能为 null 值.");
         BufferedImage skinRawImage = getSkinRawTextureByProfile(profile);
         return getSkinHeadTextureByRaw(skinRawImage, zoom, helmet);
     }
 
+    /**
+     * 从指定皮肤源文件获取用户的皮肤头像图片
+     *
+     * @param skinRawImage 皮肤源图片
+     * @throws MoonLakeSkinException 如果皮肤错误则抛出异常
+     * @throws MoonLakeSkinNotFoundException 如果游戏档案不存在皮肤则抛出异常
+     * @throws IllegalArgumentException 如果皮肤源图片对象为 {@code null} 则抛出异常
+     */
     public BufferedImage getSkinHeadTextureByRaw(BufferedImage skinRawImage) throws MoonLakeSkinException {
         return getSkinHeadTextureByRaw(skinRawImage, 8);
     }
 
+    /**
+     * 从指定皮肤源文件获取用户的皮肤头像图片
+     *
+     * @param skinRawImage 皮肤源图片
+     * @param zoom 放大倍数 (默认 8 倍, 64x64 像素)
+     * @throws MoonLakeSkinException 如果皮肤错误则抛出异常
+     * @throws MoonLakeSkinNotFoundException 如果游戏档案不存在皮肤则抛出异常
+     * @throws IllegalArgumentException 如果皮肤源图片对象为 {@code null} 则抛出异常
+     */
     public BufferedImage getSkinHeadTextureByRaw(BufferedImage skinRawImage, int zoom) throws MoonLakeSkinException {
         return getSkinHeadTextureByRaw(skinRawImage, zoom, true);
     }
 
+    /**
+     * 从指定皮肤源文件获取用户的皮肤头像图片
+     *
+     * @param skinRawImage 皮肤源图片
+     * @param zoom 放大倍数 (默认 8 倍, 64x64 像素)
+     * @param helmet 是否绘制外层皮肤 (默认为 true)
+     * @throws MoonLakeSkinException 如果皮肤错误则抛出异常
+     * @throws MoonLakeSkinNotFoundException 如果游戏档案不存在皮肤则抛出异常
+     * @throws IllegalArgumentException 如果皮肤源图片对象为 {@code null} 则抛出异常
+     */
     public BufferedImage getSkinHeadTextureByRaw(BufferedImage skinRawImage, int zoom, boolean helmet) throws MoonLakeSkinException {
         validate(skinRawImage, "皮肤材质源图片对象不能为 null 值.");
         Boolean skinVer = getSkinRawImageVer(skinRawImage);
@@ -406,18 +711,60 @@ public class ProfileAuthService extends MoonLakeAuthBaseService {
         return resizeImage(skinHeadImage, zoom);
     }
 
+    /**
+     * 从指定用户名向 HTTP 查找用户的皮肤模型 2D 图片
+     *
+     * @param name 用户名
+     * @param callback 皮肤模型图片回调对象
+     * @throws MoonLakeSkinException 如果皮肤错误则抛出异常
+     * @throws IllegalArgumentException 如果用户名对象为 {@code null} 则抛出异常
+     * @throws IllegalArgumentException 如果皮肤模型图片回调对象为 {@code null} 则抛出异常
+     */
     public void findSkinModel2DTextureByName(String name, SkinRawImageCallback<String> callback) throws MoonLakeSkinException {
         findSkinModel2DTextureByName(name, 2, callback);
     }
 
+    /**
+     * 从指定用户名向 HTTP 查找用户的皮肤模型 2D 图片
+     *
+     * @param name 用户名
+     * @param callback 皮肤模型图片回调对象
+     * @param zoom 放大倍数 (默认 2 倍, 32x64 像素)
+     * @throws MoonLakeSkinException 如果皮肤错误则抛出异常
+     * @throws IllegalArgumentException 如果用户名对象为 {@code null} 则抛出异常
+     * @throws IllegalArgumentException 如果皮肤模型图片回调对象为 {@code null} 则抛出异常
+     */
     public void findSkinModel2DTextureByName(String name, int zoom, SkinRawImageCallback<String> callback) throws MoonLakeSkinException {
         findSkinModel2DTextureByName(name, zoom, true, callback);
     }
 
+    /**
+     * 从指定用户名向 HTTP 查找用户的皮肤模型 2D 图片
+     *
+     * @param name 用户名
+     * @param callback 皮肤模型图片回调对象
+     * @param zoom 放大倍数 (默认 2 倍, 32x64 像素)
+     * @param helmet 是否绘制外层皮肤 (默认为 true)
+     * @throws MoonLakeSkinException 如果皮肤错误则抛出异常
+     * @throws IllegalArgumentException 如果用户名对象为 {@code null} 则抛出异常
+     * @throws IllegalArgumentException 如果皮肤模型图片回调对象为 {@code null} 则抛出异常
+     */
     public void findSkinModel2DTextureByName(String name, int zoom, boolean helmet, SkinRawImageCallback<String> callback) throws MoonLakeSkinException {
         findSkinModel2DTextureByName(name, zoom, helmet, callback, false);
     }
 
+    /**
+     * 从指定用户名向 HTTP 查找用户的皮肤模型 2D 图片
+     *
+     * @param name 用户名
+     * @param callback 皮肤模型图片回调对象
+     * @param zoom 放大倍数 (默认 2 倍, 32x64 像素)
+     * @param helmet 是否绘制外层皮肤 (默认为 true)
+     * @param async 是否异步
+     * @throws MoonLakeSkinException 如果皮肤错误则抛出异常
+     * @throws IllegalArgumentException 如果用户名对象为 {@code null} 则抛出异常
+     * @throws IllegalArgumentException 如果皮肤模型图片回调对象为 {@code null} 则抛出异常
+     */
     public void findSkinModel2DTextureByName(String name, int zoom, boolean helmet, SkinRawImageCallback<String> callback, boolean async) throws MoonLakeSkinException {
         validate(name, "用户名对象不能为 null 值.");
         validate(callback, "皮肤源图片回调对象不能为 null 值.");
@@ -454,18 +801,60 @@ public class ProfileAuthService extends MoonLakeAuthBaseService {
         start(runnable, async);
     }
 
+    /**
+     * 从指定游戏档案查找用户的皮肤模型 2D 图片, 如果档案不存在皮肤则请求 HTTP 获取数据
+     *
+     * @param profile 游戏档案
+     * @param callback 皮肤模型图片回调对象
+     * @throws MoonLakeSkinException 如果皮肤错误则抛出异常
+     * @throws IllegalArgumentException 如果游戏档案对象为 {@code null} 则抛出异常
+     * @throws IllegalArgumentException 如果皮肤模型图片回调对象为 {@code null} 则抛出异常
+     */
     public void findSkinModel2DTextureByProfile(GameProfile profile, SkinRawImageCallback<GameProfile> callback) throws MoonLakeSkinException {
         findSkinModel2DTextureByProfile(profile, 2, callback);
     }
 
+    /**
+     * 从指定游戏档案查找用户的皮肤模型 2D 图片, 如果档案不存在皮肤则请求 HTTP 获取数据
+     *
+     * @param profile 游戏档案
+     * @param callback 皮肤模型图片回调对象
+     * @param zoom 放大倍数 (默认 2 倍, 32x64 像素)
+     * @throws MoonLakeSkinException 如果皮肤错误则抛出异常
+     * @throws IllegalArgumentException 如果游戏档案对象为 {@code null} 则抛出异常
+     * @throws IllegalArgumentException 如果皮肤模型图片回调对象为 {@code null} 则抛出异常
+     */
     public void findSkinModel2DTextureByProfile(GameProfile profile, int zoom, SkinRawImageCallback<GameProfile> callback) throws MoonLakeSkinException {
         findSkinModel2DTextureByProfile(profile, zoom, true, callback);
     }
 
+    /**
+     * 从指定游戏档案查找用户的皮肤模型 2D 图片, 如果档案不存在皮肤则请求 HTTP 获取数据
+     *
+     * @param profile 游戏档案
+     * @param callback 皮肤模型图片回调对象
+     * @param zoom 放大倍数 (默认 2 倍, 32x64 像素)
+     * @param helmet 是否绘制外层皮肤 (默认为 true)
+     * @throws MoonLakeSkinException 如果皮肤错误则抛出异常
+     * @throws IllegalArgumentException 如果游戏档案对象为 {@code null} 则抛出异常
+     * @throws IllegalArgumentException 如果皮肤模型图片回调对象为 {@code null} 则抛出异常
+     */
     public void findSkinModel2DTextureByProfile(GameProfile profile, int zoom, boolean helmet, SkinRawImageCallback<GameProfile> callback) throws MoonLakeSkinException {
         findSkinModel2DTextureByProfile(profile, zoom, helmet, callback, false);
     }
 
+    /**
+     * 从指定游戏档案查找用户的皮肤模型 2D 图片, 如果档案不存在皮肤则请求 HTTP 获取数据
+     *
+     * @param profile 游戏档案
+     * @param callback 皮肤模型图片回调对象
+     * @param zoom 放大倍数 (默认 2 倍, 32x64 像素)
+     * @param helmet 是否绘制外层皮肤 (默认为 true)
+     * @param async 是否异步
+     * @throws MoonLakeSkinException 如果皮肤错误则抛出异常
+     * @throws IllegalArgumentException 如果游戏档案对象为 {@code null} 则抛出异常
+     * @throws IllegalArgumentException 如果皮肤模型图片回调对象为 {@code null} 则抛出异常
+     */
     public void findSkinModel2DTextureByProfile(GameProfile profile, int zoom, boolean helmet, SkinRawImageCallback<GameProfile> callback, boolean async) throws MoonLakeSkinException {
         validate(profile, "游戏档案对象不能为 null 值.");
         validate(callback, "皮肤源图片回调对象不能为 null 值.");
@@ -502,28 +891,79 @@ public class ProfileAuthService extends MoonLakeAuthBaseService {
         start(runnable, async);
     }
 
+    /**
+     * 从指定游戏档案获取用户的皮肤模型 2D 图片
+     *
+     * @param profile 游戏档案
+     * @throws MoonLakeSkinException 如果皮肤错误则抛出异常
+     * @throws MoonLakeSkinNotFoundException 如果游戏档案不存在皮肤则抛出异常
+     * @throws IllegalArgumentException 如果游戏档案对象为 {@code null} 则抛出异常
+     */
     public BufferedImage getSkinModel2DTextureByProfile(GameProfile profile) throws MoonLakeSkinException {
         return getSkinModel2DTextureByProfile(profile, 2);
     }
 
+    /**
+     * 从指定游戏档案获取用户的皮肤模型 2D 图片
+     *
+     * @param profile 游戏档案
+     * @param zoom 放大倍数 (默认 2 倍, 32x64 像素)
+     * @throws MoonLakeSkinException 如果皮肤错误则抛出异常
+     * @throws MoonLakeSkinNotFoundException 如果游戏档案不存在皮肤则抛出异常
+     * @throws IllegalArgumentException 如果游戏档案对象为 {@code null} 则抛出异常
+     */
     public BufferedImage getSkinModel2DTextureByProfile(GameProfile profile, int zoom) throws MoonLakeSkinException {
         return getSkinModel2DTextureByProfile(profile, zoom, true);
     }
 
+    /**
+     * 从指定游戏档案获取用户的皮肤模型 2D 图片
+     *
+     * @param profile 游戏档案
+     * @param zoom 放大倍数 (默认 2 倍, 32x64 像素)
+     * @param helmet 是否绘制外层皮肤 (默认为 true)
+     * @throws MoonLakeSkinException 如果皮肤错误则抛出异常
+     * @throws MoonLakeSkinNotFoundException 如果游戏档案不存在皮肤则抛出异常
+     * @throws IllegalArgumentException 如果游戏档案对象为 {@code null} 则抛出异常
+     */
     public BufferedImage getSkinModel2DTextureByProfile(GameProfile profile, int zoom, boolean helmet) throws MoonLakeSkinException {
         validate(profile, "游戏档案对象不能为 null 值.");
         BufferedImage skinRawImage = getSkinRawTextureByProfile(profile);
         return getSkinModel2DTextureByRaw(skinRawImage, zoom, helmet);
     }
 
+    /**
+     * 从指定皮肤源文件获取用户的皮肤模型 2D 图片
+     *
+     * @param skinRawImage 皮肤源图片
+     * @throws MoonLakeSkinException 如果皮肤错误则抛出异常
+     * @throws IllegalArgumentException 如果皮肤源图片对象为 {@code null} 则抛出异常
+     */
     public BufferedImage getSkinModel2DTextureByRaw(BufferedImage skinRawImage) throws MoonLakeSkinException {
         return getSkinModel2DTextureByRaw(skinRawImage, 2);
     }
 
+    /**
+     * 从指定皮肤源文件获取用户的皮肤模型 2D 图片
+     *
+     * @param skinRawImage 皮肤源图片
+     * @param zoom 放大倍数 (默认 2 倍, 32x64 像素)
+     * @throws MoonLakeSkinException 如果皮肤错误则抛出异常
+     * @throws IllegalArgumentException 如果皮肤源图片对象为 {@code null} 则抛出异常
+     */
     public BufferedImage getSkinModel2DTextureByRaw(BufferedImage skinRawImage, int zoom) throws MoonLakeSkinException {
         return getSkinModel2DTextureByRaw(skinRawImage, zoom, true);
     }
 
+    /**
+     * 从指定皮肤源文件获取用户的皮肤模型 2D 图片
+     *
+     * @param skinRawImage 皮肤源图片
+     * @param zoom 放大倍数 (默认 2 倍, 32x64 像素)
+     * @param helmet 是否绘制外层皮肤 (默认为 true)
+     * @throws MoonLakeSkinException 如果皮肤错误则抛出异常
+     * @throws IllegalArgumentException 如果皮肤源图片对象为 {@code null} 则抛出异常
+     */
     public BufferedImage getSkinModel2DTextureByRaw(BufferedImage skinRawImage, int zoom, boolean helmet) throws MoonLakeSkinException {
         // 将指定皮肤材质源图片绘制成 2D 模型图片
         validate(skinRawImage, "皮肤材质源图片对象不能为 null 值.");
@@ -571,6 +1011,12 @@ public class ProfileAuthService extends MoonLakeAuthBaseService {
         return resizeImage(skinModel2DImage, zoom);
     }
 
+    /**
+     * 开始运行指定 Runnable 对象
+     *
+     * @param runnable Runnable
+     * @param async 异步
+     */
     private static void start(final Runnable runnable, boolean async) {
         if(async)
             new Thread(runnable, "ProfileAuthService").start();
@@ -578,6 +1024,13 @@ public class ProfileAuthService extends MoonLakeAuthBaseService {
             runnable.run();
     }
 
+    /**
+     * 格式化名称获取游戏档案的集合请求
+     *
+     * @param set 名称集合
+     * @param size 大小
+     * @return 结果
+     */
     private static Set<Set<String>> fromRequest(Set<String> set, int size) {
         List<String> list = new ArrayList<>(set);
         Set<Set<String>> request = new HashSet<>();
@@ -589,6 +1042,12 @@ public class ProfileAuthService extends MoonLakeAuthBaseService {
         return request;
     }
 
+    /**
+     * 获取指定皮肤源图片的版本
+     *
+     * @param skinRawImage 皮肤源图片
+     * @return 皮肤版本
+     */
     private static Boolean getSkinRawImageVer(BufferedImage skinRawImage) {
         // 获取皮肤材质源图片的版本
         // false: 旧版本 64x32 像素
@@ -605,12 +1064,26 @@ public class ProfileAuthService extends MoonLakeAuthBaseService {
         return null;
     }
 
+    /**
+     * 将指定图片转换为指定图片类型的图片
+     *
+     * @param image 图片
+     * @param type 转换类型
+     * @return 结果图片
+     */
     private static BufferedImage conversionImage(BufferedImage image, int type) {
         BufferedImage conversion = new BufferedImage(image.getWidth(), image.getHeight(), type);
         conversion.getGraphics().drawImage(image, 0, 0, null);
         return conversion;
     }
 
+    /**
+     * 将指定图片按指定倍数进行缩放大小
+     *
+     * @param raw 图片源
+     * @param zoom 倍数
+     * @return 结果图片
+     */
     private static BufferedImage resizeImage(BufferedImage raw, int zoom) {
         BufferedImage target = new BufferedImage(raw.getWidth() * zoom, raw.getHeight() * zoom, BufferedImage.TYPE_INT_ARGB);
         Graphics g = target.createGraphics();
@@ -619,6 +1092,12 @@ public class ProfileAuthService extends MoonLakeAuthBaseService {
         return target;
     }
 
+    /**
+     * 将指定图片进行水平翻转
+     *
+     * @param raw 源图片
+     * @return 结果图片
+     */
     private static BufferedImage flippedImage(BufferedImage raw) {
         int width = raw.getWidth();
         int height = raw.getHeight();
@@ -629,6 +1108,18 @@ public class ProfileAuthService extends MoonLakeAuthBaseService {
         return target;
     }
 
+    /**
+     * 将指定图片进行绘制外层皮肤数据
+     *
+     * @param image 待绘制图片
+     * @param rgbArray RGB 数组
+     * @param width 宽度
+     * @param height 高度
+     * @param startX 开始 X
+     * @param startY 开始 Y
+     * @param offset 偏移
+     * @param scansize 扫描尺寸
+     */
     private static void drawHelmetImage(BufferedImage image, int[] rgbArray, int width, int height, int startX, int startY, int offset, int scansize) {
         /**
          * 算法摘自, 只不过就是添加了验证是否是透明的 rgb 值
@@ -652,6 +1143,12 @@ public class ProfileAuthService extends MoonLakeAuthBaseService {
         }
     }
 
+    /**
+     * 验证指定 RGB 值是否为无效
+     *
+     * @param rgb RGB
+     * @return 是否为无效
+     */
     private static boolean isInvalidColorRgb(int rgb) {
         int r = (rgb & 0xff0000) >> 16;
         int g = (rgb & 0xff00) >> 8;
@@ -659,6 +1156,9 @@ public class ProfileAuthService extends MoonLakeAuthBaseService {
         return (r == 0 && g == 0 && b == 0) || (r == 0xff && g == 0xff && b == 0xff);
     }
 
+    /**
+     * 档案时间戳响应实体类
+     */
     private static class ProfileTimestampResponse extends MojangBaseResponse {
         private UUID id;
         private String name;

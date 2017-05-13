@@ -24,18 +24,44 @@ import com.minecraft.moonlake.auth.data.StatusService;
 import java.lang.reflect.Type;
 import java.util.Map;
 
+/**
+ * <h1>MojangStatusResponse</h1>
+ * Mojang 状态响应类
+ *
+ * @version 1.0
+ * @author Month_Light
+ * @see MojangBaseResponse
+ */
 public class MojangStatusResponse extends MojangBaseResponse {
 
     private StatusService[] services;
 
+    /**
+     * Mojang 状态响应类构造函数
+     *
+     * @param services 状态服务数组
+     */
     public MojangStatusResponse(StatusService[] services) {
         this.services = services;
     }
 
+    /**
+     * 获取此 Mojang 状态响应的状态服务数组
+     *
+     * @return 状态服务数组
+     */
     public StatusService[] getServices() {
         return services;
     }
 
+    /**
+     * <h1>Serializer</h1>
+     * Mojang 状态响应序列化类
+     *
+     * @version 1.0
+     * @author Month_Light
+     * @see JsonDeserializer
+     */
     public final static class Serializer implements JsonDeserializer<MojangStatusResponse> {
 
         @Override

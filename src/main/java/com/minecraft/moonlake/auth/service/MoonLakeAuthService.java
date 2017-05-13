@@ -18,9 +18,16 @@
 
 package com.minecraft.moonlake.auth.service;
 
+/**
+ * <h1>MoonLakeAuthService</h1>
+ * 月色之湖认证服务接口
+ *
+ * @version 1.0
+ * @author Month_Light
+ */
 public interface MoonLakeAuthService {
 
-    // Minecraft 登录服务实现方法
+    // Minecraft 认证服务实现方法
     // 详情查看在线的 wiki 维基百科
     // http://wiki.vg/Mojang_API
     // http://wiki.vg/Authentication

@@ -18,5 +18,25 @@
 
 package com.minecraft.moonlake.auth;
 
+import com.minecraft.moonlake.auth.service.MoonLakeAuthBaseService;
+import com.minecraft.moonlake.auth.service.MoonLakeAuthService;
+import com.minecraft.moonlake.auth.service.mc.MinecraftAuthService;
+import com.minecraft.moonlake.auth.service.mojang.MojangStatusService;
+import com.minecraft.moonlake.auth.service.profile.ProfileAuthService;
+import com.minecraft.moonlake.auth.service.user.UserAuthService;
+
+/**
+ * <h1>MoonLakeAuth</h1>
+ * 月色之湖认证支持库
+ *
+ * @version 1.0
+ * @author Month_Light
+ * @see MoonLakeAuthService
+ * @see MoonLakeAuthBaseService
+ * @see MinecraftAuthService
+ * @see MojangStatusService
+ * @see ProfileAuthService
+ * @see UserAuthService
+ */
 public class MoonLakeAuth {
 }

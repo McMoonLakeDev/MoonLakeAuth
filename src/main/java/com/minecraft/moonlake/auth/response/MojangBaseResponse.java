@@ -18,32 +18,70 @@
 
 package com.minecraft.moonlake.auth.response;
 
+/**
+ * <h1>MojangBaseResponse</h1>
+ * Mojang 基础响应类
+ *
+ * @version 1.0
+ * @author Month_Light
+ * @see Response
+ */
 public class MojangBaseResponse extends Response {
 
     private String error;
     private String cause;
     private String errorMessage;
 
+    /**
+     * 获取此 Mojang 基础响应的错误
+     *
+     * @return 错误
+     */
     public String getError() {
         return error;
     }
 
+    /**
+     * 获取此 Mojang 基础响应的原因
+     *
+     * @return 原因
+     */
     public String getCause() {
         return cause;
     }
 
+    /**
+     * 获取此 Mojang 基础响应的错误消息
+     *
+     * @return 错误消息
+     */
     public String getErrorMessage() {
         return errorMessage;
     }
 
+    /**
+     * 设置此 Mojang 基础响应的错误
+     *
+     * @param error 错误
+     */
     protected void setError(String error) {
         this.error = error;
     }
 
+    /**
+     * 设置此 Mojang 基础响应的原因
+     *
+     * @param cause 原因
+     */
     protected void setCause(String cause) {
         this.cause = cause;
     }
 
+    /**
+     * 设置此 Mojang 基础响应的错误消息
+     *
+     * @param errorMessage 错误消息
+     */
     protected void setErrorMessage(String errorMessage) {
         this.errorMessage = errorMessage;
     }

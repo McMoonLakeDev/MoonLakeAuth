@@ -18,21 +18,48 @@
 
 package com.minecraft.moonlake.auth.exception;
 
+/**
+ * <h1>MoonLakeInvalidCredentialsException</h1>
+ * 无效的证件异常
+ *
+ * @version 1.0
+ * @author Month_Light
+ * @see MoonLakeRequestException
+ */
 public class MoonLakeInvalidCredentialsException extends MoonLakeRequestException {
 
     private static final long serialVersionUID = 1647656324928893833L;
 
+    /**
+     * MoonLakeInvalidCredentialsException
+     */
     public MoonLakeInvalidCredentialsException() {
     }
 
+    /**
+     * MoonLakeInvalidCredentialsException
+     *
+     * @param message 异常消息
+     */
     public MoonLakeInvalidCredentialsException(String message) {
         super(message);
     }
 
+    /**
+     * MoonLakeInvalidCredentialsException
+     *
+     * @param message 异常消息
+     * @param cause 原因
+     */
     public MoonLakeInvalidCredentialsException(String message, Throwable cause) {
         super(message, cause);
     }
 
+    /**
+     * MoonLakeInvalidCredentialsException
+     *
+     * @param cause 原因
+     */
     public MoonLakeInvalidCredentialsException(Throwable cause) {
         super(cause);
     }

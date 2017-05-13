@@ -25,6 +25,14 @@ import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.util.UUID;
 
+/**
+ * <h1>UUIDSerializer</h1>
+ * UUID 序列化类
+ *
+ * @version 1.0
+ * @author Month_Light
+ * @see TypeAdapter
+ */
 public class UUIDSerializer extends TypeAdapter<UUID> {
 
     public UUIDSerializer() {
@@ -40,12 +48,24 @@ public class UUIDSerializer extends TypeAdapter<UUID> {
         return fromString(jsonReader.nextString());
     }
 
+    /**
+     * 将指定 UUID 对象转换为 32 位字符串 UUID
+     *
+     * @param value UUID
+     * @return 32 位字符串 UUID
+     */
     public static String fromUUID(UUID value) {
         if(value == null)
             return "";
         return value.toString().replace("-", "");
     }
 
+    /**
+     * 将指定字符串 UUID 对象转换为 UUID 对象
+     *
+     * @param value 字符串 UUID
+     * @return UUID 对象
+     */
     public static UUID fromString(String value) {
         if(value == null || value.equals(""))
             return null;

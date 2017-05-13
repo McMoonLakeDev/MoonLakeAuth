@@ -23,18 +23,44 @@ import com.minecraft.moonlake.auth.data.ProfileHistory;
 
 import java.lang.reflect.Type;
 
+/**
+ * <h1>ProfileHistoryResponse</h1>
+ * 档案历史记录响应类
+ *
+ * @version 1.0
+ * @author Month_Light
+ * @see MojangBaseResponse
+ */
 public class ProfileHistoryResponse extends MojangBaseResponse {
 
     private ProfileHistory[] histories;
 
+    /**
+     * 档案历史记录响应类构造函数
+     *
+     * @param histories 档案历史数组
+     */
     public ProfileHistoryResponse(ProfileHistory[] histories) {
         this.histories = histories;
     }
 
+    /**
+     * 获取此档案历史记录响应的档案历史记录数组
+     *
+     * @return 档案历史记录数组
+     */
     public ProfileHistory[] getHistories() {
         return histories;
     }
 
+    /**
+     * <h1>Serializer</h1>
+     * 档案历史记录响应序列化类
+     *
+     * @version 1.0
+     * @author Month_Light
+     * @see JsonDeserializer
+     */
     public final static class Serializer implements JsonDeserializer<ProfileHistoryResponse> {
 
         @Override

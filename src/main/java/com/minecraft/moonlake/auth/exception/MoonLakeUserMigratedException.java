@@ -18,21 +18,48 @@
 
 package com.minecraft.moonlake.auth.exception;
 
+/**
+ * <h1>MoonLakeUserMigratedException</h1>
+ * 用户已迁移异常
+ *
+ * @version 1.0
+ * @author Month_Light
+ * @see MoonLakeInvalidCredentialsException
+ */
 public class MoonLakeUserMigratedException extends MoonLakeInvalidCredentialsException {
 
     private static final long serialVersionUID = -8574263389941750970L;
 
+    /**
+     * MoonLakeUserMigratedException
+     */
     public MoonLakeUserMigratedException() {
     }
 
+    /**
+     * MoonLakeUserMigratedException
+     *
+     * @param message 异常消息
+     */
     public MoonLakeUserMigratedException(String message) {
         super(message);
     }
 
+    /**
+     * MoonLakeUserMigratedException
+     *
+     * @param message 异常消息
+     * @param cause 原因
+     */
     public MoonLakeUserMigratedException(String message, Throwable cause) {
         super(message, cause);
     }
 
+    /**
+     * MoonLakeUserMigratedException
+     *
+     * @param cause 原因
+     */
     public MoonLakeUserMigratedException(Throwable cause) {
         super(cause);
     }

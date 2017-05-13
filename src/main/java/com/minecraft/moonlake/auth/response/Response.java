@@ -18,6 +18,13 @@
 
 package com.minecraft.moonlake.auth.response;
 
+/**
+ * <h1>Response</h1>
+ * 响应类
+ *
+ * @version 1.0
+ * @author Month_Light
+ */
 public abstract class Response {
 
 }
