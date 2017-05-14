@@ -419,6 +419,7 @@ public class ProfileAuthService extends MoonLakeAuthBaseService {
      * 从指定游戏档案获取用户的皮肤源图片
      *
      * @param profile 游戏档案
+     * @return 皮肤源图片
      * @throws MoonLakeSkinException 如果皮肤错误则抛出异常
      * @throws MoonLakeSkinNotFoundException 如果游戏档案不存在皮肤则抛出异常
      * @throws IllegalArgumentException 如果游戏档案对象为 {@code null} 则抛出异常
@@ -620,6 +621,7 @@ public class ProfileAuthService extends MoonLakeAuthBaseService {
      * 从指定游戏档案获取用户的皮肤头像图片
      *
      * @param profile 游戏档案
+     * @return 皮肤头像图片
      * @throws MoonLakeSkinException 如果皮肤错误则抛出异常
      * @throws MoonLakeSkinNotFoundException 如果游戏档案不存在皮肤则抛出异常
      * @throws IllegalArgumentException 如果游戏档案对象为 {@code null} 则抛出异常
@@ -633,6 +635,7 @@ public class ProfileAuthService extends MoonLakeAuthBaseService {
      *
      * @param profile 游戏档案
      * @param zoom 放大倍数 (默认 8 倍, 64x64 像素)
+     * @return 皮肤头像图片
      * @throws MoonLakeSkinException 如果皮肤错误则抛出异常
      * @throws MoonLakeSkinNotFoundException 如果游戏档案不存在皮肤则抛出异常
      * @throws IllegalArgumentException 如果游戏档案对象为 {@code null} 则抛出异常
@@ -647,6 +650,7 @@ public class ProfileAuthService extends MoonLakeAuthBaseService {
      * @param profile 游戏档案
      * @param zoom 放大倍数 (默认 8 倍, 64x64 像素)
      * @param helmet 是否绘制外层皮肤 (默认为 true)
+     * @return 皮肤头像图片
      * @throws MoonLakeSkinException 如果皮肤错误则抛出异常
      * @throws MoonLakeSkinNotFoundException 如果游戏档案不存在皮肤则抛出异常
      * @throws IllegalArgumentException 如果游戏档案对象为 {@code null} 则抛出异常
@@ -661,6 +665,7 @@ public class ProfileAuthService extends MoonLakeAuthBaseService {
      * 从指定皮肤源文件获取用户的皮肤头像图片
      *
      * @param skinRawImage 皮肤源图片
+     * @return 皮肤头像图片
      * @throws MoonLakeSkinException 如果皮肤错误则抛出异常
      * @throws MoonLakeSkinNotFoundException 如果游戏档案不存在皮肤则抛出异常
      * @throws IllegalArgumentException 如果皮肤源图片对象为 {@code null} 则抛出异常
@@ -674,6 +679,7 @@ public class ProfileAuthService extends MoonLakeAuthBaseService {
      *
      * @param skinRawImage 皮肤源图片
      * @param zoom 放大倍数 (默认 8 倍, 64x64 像素)
+     * @return 皮肤头像图片
      * @throws MoonLakeSkinException 如果皮肤错误则抛出异常
      * @throws MoonLakeSkinNotFoundException 如果游戏档案不存在皮肤则抛出异常
      * @throws IllegalArgumentException 如果皮肤源图片对象为 {@code null} 则抛出异常
@@ -688,6 +694,7 @@ public class ProfileAuthService extends MoonLakeAuthBaseService {
      * @param skinRawImage 皮肤源图片
      * @param zoom 放大倍数 (默认 8 倍, 64x64 像素)
      * @param helmet 是否绘制外层皮肤 (默认为 true)
+     * @return 皮肤头像图片
      * @throws MoonLakeSkinException 如果皮肤错误则抛出异常
      * @throws MoonLakeSkinNotFoundException 如果游戏档案不存在皮肤则抛出异常
      * @throws IllegalArgumentException 如果皮肤源图片对象为 {@code null} 则抛出异常
@@ -898,6 +905,7 @@ public class ProfileAuthService extends MoonLakeAuthBaseService {
      * @param profile 游戏档案
      * @param zoom 放大倍数 (默认 2 倍, 32x64 像素)
      * @param helmet 是否绘制外层皮肤 (默认为 true)
+     * @param slim 是否苗条
      * @param callback 皮肤模型图片回调对象
      * @throws MoonLakeSkinException 如果皮肤错误则抛出异常
      * @throws IllegalArgumentException 如果游戏档案对象为 {@code null} 则抛出异常
@@ -913,6 +921,7 @@ public class ProfileAuthService extends MoonLakeAuthBaseService {
      * @param profile 游戏档案
      * @param zoom 放大倍数 (默认 2 倍, 32x64 像素)
      * @param helmet 是否绘制外层皮肤 (默认为 true)
+     * @param slim 是否苗条
      * @param callback 皮肤模型图片回调对象
      * @param async 是否异步
      * @throws MoonLakeSkinException 如果皮肤错误则抛出异常
@@ -959,6 +968,7 @@ public class ProfileAuthService extends MoonLakeAuthBaseService {
      * 从指定游戏档案获取用户的皮肤模型 2D 图片
      *
      * @param profile 游戏档案
+     * @return 皮肤模型 2D 图片
      * @throws MoonLakeSkinException 如果皮肤错误则抛出异常
      * @throws MoonLakeSkinNotFoundException 如果游戏档案不存在皮肤则抛出异常
      * @throws IllegalArgumentException 如果游戏档案对象为 {@code null} 则抛出异常
@@ -972,6 +982,7 @@ public class ProfileAuthService extends MoonLakeAuthBaseService {
      *
      * @param profile 游戏档案
      * @param zoom 放大倍数 (默认 2 倍, 32x64 像素)
+     * @return 皮肤模型 2D 图片
      * @throws MoonLakeSkinException 如果皮肤错误则抛出异常
      * @throws MoonLakeSkinNotFoundException 如果游戏档案不存在皮肤则抛出异常
      * @throws IllegalArgumentException 如果游戏档案对象为 {@code null} 则抛出异常
@@ -986,6 +997,7 @@ public class ProfileAuthService extends MoonLakeAuthBaseService {
      * @param profile 游戏档案
      * @param zoom 放大倍数 (默认 2 倍, 32x64 像素)
      * @param helmet 是否绘制外层皮肤 (默认为 true)
+     * @return 皮肤模型 2D 图片
      * @throws MoonLakeSkinException 如果皮肤错误则抛出异常
      * @throws MoonLakeSkinNotFoundException 如果游戏档案不存在皮肤则抛出异常
      * @throws IllegalArgumentException 如果游戏档案对象为 {@code null} 则抛出异常
@@ -1001,6 +1013,7 @@ public class ProfileAuthService extends MoonLakeAuthBaseService {
      * @param zoom 放大倍数 (默认 2 倍, 32x64 像素)
      * @param helmet 是否绘制外层皮肤 (默认为 true)
      * @param slim 是否苗条
+     * @return 皮肤模型 2D 图片
      * @throws MoonLakeSkinException 如果皮肤错误则抛出异常
      * @throws MoonLakeSkinNotFoundException 如果游戏档案不存在皮肤则抛出异常
      * @throws IllegalArgumentException 如果游戏档案对象为 {@code null} 则抛出异常
@@ -1015,6 +1028,7 @@ public class ProfileAuthService extends MoonLakeAuthBaseService {
      * 从指定皮肤源文件获取用户的皮肤模型 2D 图片
      *
      * @param skinRawImage 皮肤源图片
+     * @return 皮肤模型 2D 图片
      * @throws MoonLakeSkinException 如果皮肤错误则抛出异常
      * @throws IllegalArgumentException 如果皮肤源图片对象为 {@code null} 则抛出异常
      */
@@ -1027,6 +1041,7 @@ public class ProfileAuthService extends MoonLakeAuthBaseService {
      *
      * @param skinRawImage 皮肤源图片
      * @param zoom 放大倍数 (默认 2 倍, 32x64 像素)
+     * @return 皮肤模型 2D 图片
      * @throws MoonLakeSkinException 如果皮肤错误则抛出异常
      * @throws IllegalArgumentException 如果皮肤源图片对象为 {@code null} 则抛出异常
      */
@@ -1040,6 +1055,7 @@ public class ProfileAuthService extends MoonLakeAuthBaseService {
      * @param skinRawImage 皮肤源图片
      * @param zoom 放大倍数 (默认 2 倍, 32x64 像素)
      * @param helmet 是否绘制外层皮肤 (默认为 true)
+     * @return 皮肤模型 2D 图片
      * @throws MoonLakeSkinException 如果皮肤错误则抛出异常
      * @throws IllegalArgumentException 如果皮肤源图片对象为 {@code null} 则抛出异常
      */
@@ -1054,6 +1070,7 @@ public class ProfileAuthService extends MoonLakeAuthBaseService {
      * @param zoom 放大倍数 (默认 2 倍, 32x64 像素)
      * @param helmet 是否绘制外层皮肤 (默认为 true)
      * @param slim 是否苗条
+     * @return 皮肤模型 2D 图片
      * @throws MoonLakeSkinException 如果皮肤错误则抛出异常
      * @throws IllegalArgumentException 如果皮肤源图片对象为 {@code null} 则抛出异常
      */

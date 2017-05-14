@@ -103,6 +103,7 @@ public class GameProfile {
     /**
      * 获取此 Minecraft 游戏档案指定名称的属性
      *
+     * @param name 名称
      * @return 属性
      */
     public Property getProperty(String name) {
