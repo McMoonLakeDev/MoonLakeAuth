@@ -453,8 +453,8 @@ public class ProfileAuthService extends MoonLakeAuthBaseService {
      * 从指定用户名向 HTTP 查找用户的皮肤头像图片
      *
      * @param name 用户名
-     * @param callback 皮肤头像图片回调对象
      * @param zoom 放大倍数 (默认 8 倍, 64x64 像素)
+     * @param callback 皮肤头像图片回调对象
      * @throws MoonLakeSkinException 如果皮肤错误则抛出异常
      * @throws IllegalArgumentException 如果用户名对象为 {@code null} 则抛出异常
      * @throws IllegalArgumentException 如果皮肤头像图片回调对象为 {@code null} 则抛出异常
@@ -467,9 +467,9 @@ public class ProfileAuthService extends MoonLakeAuthBaseService {
      * 从指定用户名向 HTTP 查找用户的皮肤头像图片
      *
      * @param name 用户名
-     * @param callback 皮肤头像图片回调对象
      * @param zoom 放大倍数 (默认 8 倍, 64x64 像素)
      * @param helmet 是否绘制外层皮肤 (默认为 true)
+     * @param callback 皮肤头像图片回调对象
      * @throws MoonLakeSkinException 如果皮肤错误则抛出异常
      * @throws IllegalArgumentException 如果用户名对象为 {@code null} 则抛出异常
      * @throws IllegalArgumentException 如果皮肤头像图片回调对象为 {@code null} 则抛出异常
@@ -482,9 +482,9 @@ public class ProfileAuthService extends MoonLakeAuthBaseService {
      * 从指定用户名向 HTTP 查找用户的皮肤头像图片
      *
      * @param name 用户名
-     * @param callback 皮肤头像图片回调对象
      * @param zoom 放大倍数 (默认 8 倍, 64x64 像素)
      * @param helmet 是否绘制外层皮肤 (默认为 true)
+     * @param callback 皮肤头像图片回调对象
      * @param async 是否异步
      * @throws MoonLakeSkinException 如果皮肤错误则抛出异常
      * @throws IllegalArgumentException 如果用户名对象为 {@code null} 则抛出异常
@@ -543,8 +543,8 @@ public class ProfileAuthService extends MoonLakeAuthBaseService {
      * 从指定游戏档案查找用户的皮肤头像图片, 如果档案不存在皮肤则请求 HTTP 获取数据
      *
      * @param profile 游戏档案
-     * @param callback 皮肤头像图片回调对象
      * @param zoom 放大倍数 (默认 8 倍, 64x64 像素)
+     * @param callback 皮肤头像图片回调对象
      * @throws MoonLakeSkinException 如果皮肤错误则抛出异常
      * @throws IllegalArgumentException 如果游戏档案对象为 {@code null} 则抛出异常
      * @throws IllegalArgumentException 如果皮肤头像图片回调对象为 {@code null} 则抛出异常
@@ -557,9 +557,9 @@ public class ProfileAuthService extends MoonLakeAuthBaseService {
      * 从指定游戏档案查找用户的皮肤头像图片, 如果档案不存在皮肤则请求 HTTP 获取数据
      *
      * @param profile 游戏档案
-     * @param callback 皮肤头像图片回调对象
      * @param zoom 放大倍数 (默认 8 倍, 64x64 像素)
      * @param helmet 是否绘制外层皮肤 (默认为 true)
+     * @param callback 皮肤头像图片回调对象
      * @throws MoonLakeSkinException 如果皮肤错误则抛出异常
      * @throws IllegalArgumentException 如果游戏档案对象为 {@code null} 则抛出异常
      * @throws IllegalArgumentException 如果皮肤头像图片回调对象为 {@code null} 则抛出异常
@@ -572,9 +572,9 @@ public class ProfileAuthService extends MoonLakeAuthBaseService {
      * 从指定游戏档案查找用户的皮肤头像图片, 如果档案不存在皮肤则请求 HTTP 获取数据
      *
      * @param profile 游戏档案
-     * @param callback 皮肤头像图片回调对象
      * @param zoom 放大倍数 (默认 8 倍, 64x64 像素)
      * @param helmet 是否绘制外层皮肤 (默认为 true)
+     * @param callback 皮肤头像图片回调对象
      * @param async 是否异步
      * @throws MoonLakeSkinException 如果皮肤错误则抛出异常
      * @throws IllegalArgumentException 如果游戏档案对象为 {@code null} 则抛出异常
@@ -728,8 +728,8 @@ public class ProfileAuthService extends MoonLakeAuthBaseService {
      * 从指定用户名向 HTTP 查找用户的皮肤模型 2D 图片
      *
      * @param name 用户名
-     * @param callback 皮肤模型图片回调对象
      * @param zoom 放大倍数 (默认 2 倍, 32x64 像素)
+     * @param callback 皮肤模型图片回调对象
      * @throws MoonLakeSkinException 如果皮肤错误则抛出异常
      * @throws IllegalArgumentException 如果用户名对象为 {@code null} 则抛出异常
      * @throws IllegalArgumentException 如果皮肤模型图片回调对象为 {@code null} 则抛出异常
@@ -742,9 +742,9 @@ public class ProfileAuthService extends MoonLakeAuthBaseService {
      * 从指定用户名向 HTTP 查找用户的皮肤模型 2D 图片
      *
      * @param name 用户名
-     * @param callback 皮肤模型图片回调对象
      * @param zoom 放大倍数 (默认 2 倍, 32x64 像素)
      * @param helmet 是否绘制外层皮肤 (默认为 true)
+     * @param callback 皮肤模型图片回调对象
      * @throws MoonLakeSkinException 如果皮肤错误则抛出异常
      * @throws IllegalArgumentException 如果用户名对象为 {@code null} 则抛出异常
      * @throws IllegalArgumentException 如果皮肤模型图片回调对象为 {@code null} 则抛出异常
@@ -757,15 +757,48 @@ public class ProfileAuthService extends MoonLakeAuthBaseService {
      * 从指定用户名向 HTTP 查找用户的皮肤模型 2D 图片
      *
      * @param name 用户名
-     * @param callback 皮肤模型图片回调对象
      * @param zoom 放大倍数 (默认 2 倍, 32x64 像素)
      * @param helmet 是否绘制外层皮肤 (默认为 true)
+     * @param callback 皮肤模型图片回调对象
      * @param async 是否异步
      * @throws MoonLakeSkinException 如果皮肤错误则抛出异常
      * @throws IllegalArgumentException 如果用户名对象为 {@code null} 则抛出异常
      * @throws IllegalArgumentException 如果皮肤模型图片回调对象为 {@code null} 则抛出异常
      */
     public void findSkinModel2DTextureByName(String name, int zoom, boolean helmet, SkinRawImageCallback<String> callback, boolean async) throws MoonLakeSkinException {
+        findSkinModel2DTextureByName(name, zoom, helmet, false, callback, async);
+    }
+
+    /**
+     * 从指定用户名向 HTTP 查找用户的皮肤模型 2D 图片
+     *
+     * @param name 用户名
+     * @param zoom 放大倍数 (默认 2 倍, 32x64 像素)
+     * @param helmet 是否绘制外层皮肤 (默认为 true)
+     * @param slim 是否苗条
+     * @param callback 皮肤模型图片回调对象
+     * @throws MoonLakeSkinException 如果皮肤错误则抛出异常
+     * @throws IllegalArgumentException 如果用户名对象为 {@code null} 则抛出异常
+     * @throws IllegalArgumentException 如果皮肤模型图片回调对象为 {@code null} 则抛出异常
+     */
+    public void findSkinModel2DTextureByName(String name, int zoom, boolean helmet, boolean slim, SkinRawImageCallback<String> callback) throws MoonLakeSkinException {
+        findSkinModel2DTextureByName(name, zoom, helmet, slim, callback, false);
+    }
+
+    /**
+     * 从指定用户名向 HTTP 查找用户的皮肤模型 2D 图片
+     *
+     * @param name 用户名
+     * @param zoom 放大倍数 (默认 2 倍, 32x64 像素)
+     * @param helmet 是否绘制外层皮肤 (默认为 true)
+     * @param slim 是否苗条
+     * @param callback 皮肤模型图片回调对象
+     * @param async 是否异步
+     * @throws MoonLakeSkinException 如果皮肤错误则抛出异常
+     * @throws IllegalArgumentException 如果用户名对象为 {@code null} 则抛出异常
+     * @throws IllegalArgumentException 如果皮肤模型图片回调对象为 {@code null} 则抛出异常
+     */
+    public void findSkinModel2DTextureByName(String name, int zoom, boolean helmet, boolean slim, SkinRawImageCallback<String> callback, boolean async) throws MoonLakeSkinException {
         validate(name, "用户名对象不能为 null 值.");
         validate(callback, "皮肤源图片回调对象不能为 null 值.");
         Runnable runnable = new Runnable() {
@@ -775,7 +808,7 @@ public class ProfileAuthService extends MoonLakeAuthBaseService {
                     @Override
                     public void onLookupSucceeded(GameProfile profile) {
                         try {
-                            findSkinModel2DTextureByProfile(profile, zoom, helmet, new SkinRawImageCallback<GameProfile>() {
+                            findSkinModel2DTextureByProfile(profile, zoom, helmet, slim, new SkinRawImageCallback<GameProfile>() {
                                 @Override
                                 public void onLookupSucceeded(GameProfile param, BufferedImage headImage) {
                                     callback.onLookupSucceeded(param.getName(), headImage);
@@ -818,8 +851,8 @@ public class ProfileAuthService extends MoonLakeAuthBaseService {
      * 从指定游戏档案查找用户的皮肤模型 2D 图片, 如果档案不存在皮肤则请求 HTTP 获取数据
      *
      * @param profile 游戏档案
-     * @param callback 皮肤模型图片回调对象
      * @param zoom 放大倍数 (默认 2 倍, 32x64 像素)
+     * @param callback 皮肤模型图片回调对象
      * @throws MoonLakeSkinException 如果皮肤错误则抛出异常
      * @throws IllegalArgumentException 如果游戏档案对象为 {@code null} 则抛出异常
      * @throws IllegalArgumentException 如果皮肤模型图片回调对象为 {@code null} 则抛出异常
@@ -832,9 +865,9 @@ public class ProfileAuthService extends MoonLakeAuthBaseService {
      * 从指定游戏档案查找用户的皮肤模型 2D 图片, 如果档案不存在皮肤则请求 HTTP 获取数据
      *
      * @param profile 游戏档案
-     * @param callback 皮肤模型图片回调对象
      * @param zoom 放大倍数 (默认 2 倍, 32x64 像素)
      * @param helmet 是否绘制外层皮肤 (默认为 true)
+     * @param callback 皮肤模型图片回调对象
      * @throws MoonLakeSkinException 如果皮肤错误则抛出异常
      * @throws IllegalArgumentException 如果游戏档案对象为 {@code null} 则抛出异常
      * @throws IllegalArgumentException 如果皮肤模型图片回调对象为 {@code null} 则抛出异常
@@ -847,15 +880,46 @@ public class ProfileAuthService extends MoonLakeAuthBaseService {
      * 从指定游戏档案查找用户的皮肤模型 2D 图片, 如果档案不存在皮肤则请求 HTTP 获取数据
      *
      * @param profile 游戏档案
-     * @param callback 皮肤模型图片回调对象
      * @param zoom 放大倍数 (默认 2 倍, 32x64 像素)
      * @param helmet 是否绘制外层皮肤 (默认为 true)
+     * @param callback 皮肤模型图片回调对象
      * @param async 是否异步
      * @throws MoonLakeSkinException 如果皮肤错误则抛出异常
      * @throws IllegalArgumentException 如果游戏档案对象为 {@code null} 则抛出异常
      * @throws IllegalArgumentException 如果皮肤模型图片回调对象为 {@code null} 则抛出异常
      */
     public void findSkinModel2DTextureByProfile(GameProfile profile, int zoom, boolean helmet, SkinRawImageCallback<GameProfile> callback, boolean async) throws MoonLakeSkinException {
+        findSkinModel2DTextureByProfile(profile, zoom, helmet, false, callback, async);
+    }
+
+    /**
+     * 从指定游戏档案查找用户的皮肤模型 2D 图片, 如果档案不存在皮肤则请求 HTTP 获取数据
+     *
+     * @param profile 游戏档案
+     * @param zoom 放大倍数 (默认 2 倍, 32x64 像素)
+     * @param helmet 是否绘制外层皮肤 (默认为 true)
+     * @param callback 皮肤模型图片回调对象
+     * @throws MoonLakeSkinException 如果皮肤错误则抛出异常
+     * @throws IllegalArgumentException 如果游戏档案对象为 {@code null} 则抛出异常
+     * @throws IllegalArgumentException 如果皮肤模型图片回调对象为 {@code null} 则抛出异常
+     */
+    public void findSkinModel2DTextureByProfile(GameProfile profile, int zoom, boolean helmet, boolean slim, SkinRawImageCallback<GameProfile> callback) throws MoonLakeSkinException {
+        findSkinModel2DTextureByProfile(profile, zoom, helmet, slim, callback, false);
+    }
+
+    /**
+     * 从指定游戏档案查找用户的皮肤模型 2D 图片, 如果档案不存在皮肤则请求 HTTP 获取数据
+     *
+     * @param profile 游戏档案
+     * @param zoom 放大倍数 (默认 2 倍, 32x64 像素)
+     * @param helmet 是否绘制外层皮肤 (默认为 true)
+     * @param callback 皮肤模型图片回调对象
+     * @param async 是否异步
+     * @throws MoonLakeSkinException 如果皮肤错误则抛出异常
+     * @throws IllegalArgumentException 如果游戏档案对象为 {@code null} 则抛出异常
+     * @throws IllegalArgumentException 如果皮肤模型图片回调对象为 {@code null} 则抛出异常
+     */
+    public void findSkinModel2DTextureByProfile(GameProfile profile, int zoom, boolean helmet, boolean slim, SkinRawImageCallback<GameProfile> callback, boolean async) throws MoonLakeSkinException {
         validate(profile, "游戏档案对象不能为 null 值.");
         validate(callback, "皮肤源图片回调对象不能为 null 值.");
         Runnable runnable = new Runnable() {
@@ -867,7 +931,7 @@ public class ProfileAuthService extends MoonLakeAuthBaseService {
                 if(!textures.isEmpty() && (skinTexture = textures.get(TextureType.SKIN)) != null && !isBlank(skinTexture.getUrl())) {
                     try {
                         BufferedImage image = getSkinRawTextureByProfile(profile);
-                        BufferedImage modelImage = getSkinModel2DTextureByRaw(image, zoom, helmet);
+                        BufferedImage modelImage = getSkinModel2DTextureByRaw(image, zoom, helmet, slim);
                         callback.onLookupSucceeded(profile, modelImage);
                         existGetSucceed = true;
                     } catch (MoonLakeSkinException e) {
@@ -881,7 +945,7 @@ public class ProfileAuthService extends MoonLakeAuthBaseService {
                     minecraftAuthService.fillProfileProperties(profile);
                     minecraftAuthService.fillProfileTextures(profile);
                     BufferedImage image = getSkinRawTextureByProfile(profile);
-                    BufferedImage modelImage = getSkinModel2DTextureByRaw(image, zoom, helmet);
+                    BufferedImage modelImage = getSkinModel2DTextureByRaw(image, zoom, helmet, slim);
                     callback.onLookupSucceeded(profile, modelImage);
                 } catch (Exception e) {
                     callback.onLookupFailed(profile, e);
@@ -927,9 +991,24 @@ public class ProfileAuthService extends MoonLakeAuthBaseService {
      * @throws IllegalArgumentException 如果游戏档案对象为 {@code null} 则抛出异常
      */
     public BufferedImage getSkinModel2DTextureByProfile(GameProfile profile, int zoom, boolean helmet) throws MoonLakeSkinException {
+        return getSkinModel2DTextureByProfile(profile, zoom, helmet, false);
+    }
+
+    /**
+     * 从指定游戏档案获取用户的皮肤模型 2D 图片
+     *
+     * @param profile 游戏档案
+     * @param zoom 放大倍数 (默认 2 倍, 32x64 像素)
+     * @param helmet 是否绘制外层皮肤 (默认为 true)
+     * @param slim 是否苗条
+     * @throws MoonLakeSkinException 如果皮肤错误则抛出异常
+     * @throws MoonLakeSkinNotFoundException 如果游戏档案不存在皮肤则抛出异常
+     * @throws IllegalArgumentException 如果游戏档案对象为 {@code null} 则抛出异常
+     */
+    public BufferedImage getSkinModel2DTextureByProfile(GameProfile profile, int zoom, boolean helmet, boolean slim) throws MoonLakeSkinException {
         validate(profile, "游戏档案对象不能为 null 值.");
         BufferedImage skinRawImage = getSkinRawTextureByProfile(profile);
-        return getSkinModel2DTextureByRaw(skinRawImage, zoom, helmet);
+        return getSkinModel2DTextureByRaw(skinRawImage, zoom, helmet, slim);
     }
 
     /**
@@ -965,6 +1044,20 @@ public class ProfileAuthService extends MoonLakeAuthBaseService {
      * @throws IllegalArgumentException 如果皮肤源图片对象为 {@code null} 则抛出异常
      */
     public BufferedImage getSkinModel2DTextureByRaw(BufferedImage skinRawImage, int zoom, boolean helmet) throws MoonLakeSkinException {
+        return getSkinModel2DTextureByRaw(skinRawImage, zoom, helmet, false);
+    }
+
+    /**
+     * 从指定皮肤源文件获取用户的皮肤模型 2D 图片
+     *
+     * @param skinRawImage 皮肤源图片
+     * @param zoom 放大倍数 (默认 2 倍, 32x64 像素)
+     * @param helmet 是否绘制外层皮肤 (默认为 true)
+     * @param slim 是否苗条
+     * @throws MoonLakeSkinException 如果皮肤错误则抛出异常
+     * @throws IllegalArgumentException 如果皮肤源图片对象为 {@code null} 则抛出异常
+     */
+    public BufferedImage getSkinModel2DTextureByRaw(BufferedImage skinRawImage, int zoom, boolean helmet, boolean slim) throws MoonLakeSkinException {
         // 将指定皮肤材质源图片绘制成 2D 模型图片
         validate(skinRawImage, "皮肤材质源图片对象不能为 null 值.");
         Boolean skinVer = getSkinRawImageVer(skinRawImage);
@@ -980,10 +1073,10 @@ public class ProfileAuthService extends MoonLakeAuthBaseService {
             // 旧版本皮肤 64x32 像素的绘制方式
             skinModel2DImage.setRGB(4, 0, 8, 8, skinRawImage.getRGB(8, 8, 8, 8, null, 0, 8), 0, 8); // 头
             skinModel2DImage.setRGB(4, 8, 8, 12, skinRawImage.getRGB(20, 20, 8, 12, null, 0, 8), 0, 8); // 身体
-            BufferedImage armImage = new BufferedImage(4, 12, BufferedImage.TYPE_INT_ARGB); // 手
-            armImage.setRGB(0, 0, 4, 12, skinRawImage.getRGB(44, 20, 4, 12, null, 0, 8), 0, 8);
-            skinModel2DImage.getGraphics().drawImage(armImage, 0, 8, 4, 12, null); // 左手
-            skinModel2DImage.getGraphics().drawImage(flippedImage(armImage), 12, 8, 4, 12, null); // 右手 (翻转左手)
+            BufferedImage armImage = new BufferedImage(slim ? 3 : 4, 12, BufferedImage.TYPE_INT_ARGB); // 手
+            armImage.setRGB(0, 0, slim ? 3 : 4, 12, skinRawImage.getRGB(44, 20, slim ? 3 : 4, 12, null, 0, 8), 0, 8);
+            skinModel2DImage.getGraphics().drawImage(armImage, slim ? 1 : 0, 8, slim ? 3 : 4, 12, null); // 左手
+            skinModel2DImage.getGraphics().drawImage(flippedImage(armImage), 12, 8, slim ? 3 : 4, 12, null); // 右手 (翻转左手)
             BufferedImage legImage = new BufferedImage(4, 12, BufferedImage.TYPE_INT_ARGB); // 腿
             legImage.setRGB(0, 0, 4, 12, skinRawImage.getRGB(4, 20, 4, 12, null, 0, 8), 0, 8);
             skinModel2DImage.getGraphics().drawImage(legImage, 4, 20, 4, 12, null); // 右腿
@@ -994,15 +1087,15 @@ public class ProfileAuthService extends MoonLakeAuthBaseService {
             // 新版本双层皮肤 64x64 像素的绘制方式
             skinModel2DImage.setRGB(4, 0, 8, 8, skinRawImage.getRGB(8, 8, 8, 8, null, 0, 8), 0, 8); // 头
             skinModel2DImage.setRGB(4, 8, 8, 12, skinRawImage.getRGB(20, 20, 8, 12, null, 0, 8), 0, 8); // 身体
-            skinModel2DImage.setRGB(0, 8, 4, 12, skinRawImage.getRGB(44, 20, 4, 12, null, 0, 8), 0, 8); // 右手
-            skinModel2DImage.setRGB(12, 8, 4, 12, skinRawImage.getRGB(36, 52, 4, 12, null, 0, 8), 0, 8); // 左手
+            skinModel2DImage.setRGB(slim ? 1 : 0, 8, slim ? 3 : 4, 12, skinRawImage.getRGB(44, 20, slim ? 3 : 4, 12, null, 0, 8), 0, 8); // 右手
+            skinModel2DImage.setRGB(12, 8, slim ? 3 : 4, 12, skinRawImage.getRGB(36, 52, slim ? 3 : 4, 12, null, 0, 8), 0, 8); // 左手
             skinModel2DImage.setRGB(4, 20, 4, 12, skinRawImage.getRGB(4, 20, 4, 12, null, 0, 8), 0, 8); // 右腿
             skinModel2DImage.setRGB(8, 20, 4, 12, skinRawImage.getRGB(20, 52, 4, 12, null, 0, 8), 0, 8); // 左腿
             if(helmet) { // 新版本所有部位都有双层的
                 drawHelmetImage(skinModel2DImage, skinRawImage.getRGB(40, 8, 8, 8, null, 0, 8), 8, 8, 4, 0, 0, 8); // 头外层
                 drawHelmetImage(skinModel2DImage, skinRawImage.getRGB(20, 32, 8, 12, null, 0, 8), 8, 12, 4, 8, 0, 8); // 身体外层
-                drawHelmetImage(skinModel2DImage, skinRawImage.getRGB(44, 32, 4, 12, null, 0, 8), 4, 12, 0, 8, 0, 8); // 右手外层
-                drawHelmetImage(skinModel2DImage, skinRawImage.getRGB(52, 52, 4, 12, null, 0, 8), 4, 12, 12, 8, 0, 8); // 左手外层
+                drawHelmetImage(skinModel2DImage, skinRawImage.getRGB(44, 32, slim ? 3 : 4, 12, null, 0, 8), slim ? 3 : 4, 12, slim ? 1 : 0, 8, 0, 8); // 右手外层
+                drawHelmetImage(skinModel2DImage, skinRawImage.getRGB(52, 52, slim ? 3 : 4, 12, null, 0, 8), slim ? 3 : 4, 12, 12, 8, 0, 8); // 左手外层
                 drawHelmetImage(skinModel2DImage, skinRawImage.getRGB(4, 36, 4, 12, null, 0, 8), 4, 12, 4, 20, 0, 8); // 右腿外层
                 drawHelmetImage(skinModel2DImage, skinRawImage.getRGB(4, 52, 4, 12, null, 0, 8), 4, 12, 8, 20, 0, 8); // 左腿外层
             }

@@ -184,6 +184,7 @@ public class MoonLakeAuthTest {
     @Test
     @Ignore
     public void testSkinHeadImageName() throws Exception {
+        // 测试获取指定用户名的皮肤头像图片
         ProfileAuthService authService = new ProfileAuthService();
         authService.findSkinHeadTextureByName("month_light", new SkinRawImageCallback<String>() {
             @Override
@@ -206,8 +207,31 @@ public class MoonLakeAuthTest {
     @Test
     @Ignore
     public void testSkinModel2DImage() throws Exception {
+        // 测试获取指定用户名的皮肤模型2D图片
         ProfileAuthService authService = new ProfileAuthService();
         authService.findSkinModel2DTextureByName("month_light", new SkinRawImageCallback<String>() {
+            @Override
+            public void onLookupSucceeded(String param, BufferedImage modelImage) {
+                try {
+                    ImageIO.write(modelImage, "PNG", new File("src\\test\\" + param + "-Helmet-Model.png"));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onLookupFailed(String param, Exception ex) {
+                ex.printStackTrace();
+            }
+        });
+    }
+
+    @Test
+    @Ignore
+    public void testSkinSlimModel2DImage() throws Exception {
+        // 测试获取指定用户名的皮肤纤细模型2D图片
+        ProfileAuthService authService = new ProfileAuthService();
+        authService.findSkinModel2DTextureByName("month_light", 2, true, true, new SkinRawImageCallback<String>() {
             @Override
             public void onLookupSucceeded(String param, BufferedImage modelImage) {
                 try {
