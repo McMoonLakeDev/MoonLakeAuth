@@ -31,13 +31,13 @@ public class MoonLakeSkinException extends MoonLakeAuthException {
     private static final long serialVersionUID = 4953055766569060046L;
 
     /**
-     * MoonLakeSkinException
+     * 皮肤异常构造函数
      */
     public MoonLakeSkinException() {
     }
 
     /**
-     * MoonLakeSkinException
+     * 皮肤异常构造函数
      *
      * @param message 异常消息
      */
@@ -46,7 +46,7 @@ public class MoonLakeSkinException extends MoonLakeAuthException {
     }
 
     /**
-     * MoonLakeSkinException
+     * 皮肤异常构造函数
      *
      * @param message 异常消息
      * @param cause 原因
@@ -56,7 +56,7 @@ public class MoonLakeSkinException extends MoonLakeAuthException {
     }
 
     /**
-     * MoonLakeSkinException
+     * 皮肤异常构造函数
      *
      * @param cause 原因
      */

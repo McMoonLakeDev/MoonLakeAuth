@@ -69,4 +69,27 @@ public class ProfileHistoryList implements Iterable<ProfileHistory> {
     public Iterator<ProfileHistory> iterator() {
         return historyList.iterator();
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(obj == this)
+            return true;
+        if(obj instanceof ProfileHistoryList) {
+            ProfileHistoryList other = (ProfileHistoryList) obj;
+            return historyList != null ? historyList.equals(other.historyList) : other.historyList == null;
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return historyList != null ? historyList.hashCode() : 0;
+    }
+
+    @Override
+    public String toString() {
+        return "ProfileHistoryList{" +
+                "historyList=" + historyList +
+                '}';
+    }
 }

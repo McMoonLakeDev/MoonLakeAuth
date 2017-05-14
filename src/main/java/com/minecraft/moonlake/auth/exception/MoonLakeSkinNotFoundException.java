@@ -31,13 +31,13 @@ public class MoonLakeSkinNotFoundException extends MoonLakeSkinException {
     private static final long serialVersionUID = -7458122820159366998L;
 
     /**
-     * MoonLakeSkinNotFoundException
+     * 皮肤不存在异常构造函数
      */
     public MoonLakeSkinNotFoundException() {
     }
 
     /**
-     * MoonLakeSkinNotFoundException
+     * 皮肤不存在异常构造函数
      *
      * @param message 异常消息
      */
@@ -46,7 +46,7 @@ public class MoonLakeSkinNotFoundException extends MoonLakeSkinException {
     }
 
     /**
-     * MoonLakeSkinNotFoundException
+     * 皮肤不存在异常构造函数
      *
      * @param message 异常消息
      * @param cause 原因
@@ -56,7 +56,7 @@ public class MoonLakeSkinNotFoundException extends MoonLakeSkinException {
     }
 
     /**
-     * MoonLakeSkinNotFoundException
+     * 皮肤不存在异常构造函数
      *
      * @param cause 原因
      */

@@ -31,7 +31,19 @@ import java.util.UUID;
  */
 public interface ProfileHistoryCallback {
 
+    /**
+     * 查找成功
+     *
+     * @param id 用户 Id
+     * @param historyList 历史记录列表
+     */
     void onLookupSucceeded(UUID id, ProfileHistoryList historyList);
 
+    /**
+     * 查找失败
+     *
+     * @param id 用户 Id
+     * @param ex 异常
+     */
     void onLookupFailed(UUID id, Exception ex);
 }

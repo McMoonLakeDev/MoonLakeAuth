@@ -119,6 +119,27 @@ public class Property {
     }
 
     @Override
+    public boolean equals(Object obj) {
+        if(obj == this)
+            return true;
+        if(obj instanceof Property) {
+            Property other = (Property) obj;
+            return name != null ? name.equals(other.name) : other.name == null &&
+                    value != null ? value.equals(other.value) : other.value == null &&
+                    hasSignature() ? signature.equals(other.signature) : !other.hasSignature();
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = name != null ? name.hashCode() : 0;
+        result = 31 * result + (value != null ? value.hashCode() : 0);
+        result = 31 * result + (signature != null ? signature.hashCode() : 0);
+        return result;
+    }
+
+    @Override
     public String toString() {
         return "Property{" +
                 "name='" + name + '\'' +

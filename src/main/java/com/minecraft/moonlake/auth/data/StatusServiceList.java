@@ -70,4 +70,27 @@ public class StatusServiceList implements Iterable<StatusService> {
     public Iterator<StatusService> iterator() {
         return serviceList.iterator();
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(obj == this)
+            return true;
+        if(obj instanceof StatusServiceList) {
+            StatusServiceList other = (StatusServiceList) obj;
+            return serviceList != null ? serviceList.equals(other.serviceList) : other.serviceList == null;
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return serviceList != null ? serviceList.hashCode() : 0;
+    }
+
+    @Override
+    public String toString() {
+        return "StatusServiceList{" +
+                "serviceList=" + serviceList +
+                '}';
+    }
 }

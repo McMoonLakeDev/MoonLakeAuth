@@ -80,7 +80,7 @@ public class ProfileAuthService extends MoonLakeAuthBaseService {
      * @throws IllegalArgumentException 如果用户名对象为 {@code null} 则抛出异常
      * @throws IllegalArgumentException 如果游戏档案回调对象为 {@code null} 则抛出异常
      */
-    public void findProfileByName(final String name, final ProfileLookupCallback callback) {
+    public void findProfileByName(String name, ProfileLookupCallback callback) {
         findProfileByName(name, callback, false);
     }
 
@@ -93,7 +93,7 @@ public class ProfileAuthService extends MoonLakeAuthBaseService {
      * @throws IllegalArgumentException 如果用户名对象为 {@code null} 则抛出异常
      * @throws IllegalArgumentException 如果游戏档案回调对象为 {@code null} 则抛出异常
      */
-    public void findProfileByName(final String name, final ProfileLookupCallback callback, boolean async) {
+    public void findProfileByName(String name, ProfileLookupCallback callback, boolean async) {
         validate(name, "名称对象不能为 null 值.");
         findProfilesByName(new String[] { name }, callback, async);
     }
@@ -106,7 +106,7 @@ public class ProfileAuthService extends MoonLakeAuthBaseService {
      * @throws IllegalArgumentException 如果用户名数组对象为 {@code null} 则抛出异常
      * @throws IllegalArgumentException 如果游戏档案回调对象为 {@code null} 则抛出异常
      */
-    public void findProfilesByName(final String[] names, final ProfileLookupCallback callback) {
+    public void findProfilesByName(String[] names, ProfileLookupCallback callback) {
         findProfilesByName(names, callback, false);
     }
 
@@ -119,7 +119,7 @@ public class ProfileAuthService extends MoonLakeAuthBaseService {
      * @throws IllegalArgumentException 如果用户名数组对象为 {@code null} 则抛出异常
      * @throws IllegalArgumentException 如果游戏档案回调对象为 {@code null} 则抛出异常
      */
-    public void findProfilesByName(final String[] names, final ProfileLookupCallback callback, boolean async) {
+    public void findProfilesByName(String[] names, ProfileLookupCallback callback, boolean async) {
         validate(names, "名称数组不能为 null 值.");
         validate(callback, "游戏档案查询回调对象不能为 null 值.");
         final Set<String> nameSet = new HashSet<>();

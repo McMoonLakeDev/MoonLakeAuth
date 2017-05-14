@@ -77,6 +77,8 @@ public class ProfileTexture {
 
     /**
      * 获取此档案材质的哈希值
+     *
+     * @return 哈希值
      */
     public String getHash() {
         String url = this.url.endsWith("/") ? this.url.substring(0, this.url.length() - 1) : this.url;

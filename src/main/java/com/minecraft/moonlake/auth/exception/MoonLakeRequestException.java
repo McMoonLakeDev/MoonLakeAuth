@@ -31,13 +31,13 @@ public class MoonLakeRequestException extends MoonLakeAuthException {
     private static final long serialVersionUID = 2670560596110569586L;
 
     /**
-     * MoonLakeRequestException
+     * 请求时异常构造函数
      */
     public MoonLakeRequestException() {
     }
 
     /**
-     * MoonLakeRequestException
+     * 请求时异常构造函数
      *
      * @param message 异常消息
      */
@@ -46,7 +46,7 @@ public class MoonLakeRequestException extends MoonLakeAuthException {
     }
 
     /**
-     * MoonLakeRequestException
+     * 请求时异常构造函数
      *
      * @param message 异常消息
      * @param cause 原因
@@ -56,7 +56,7 @@ public class MoonLakeRequestException extends MoonLakeAuthException {
     }
 
     /**
-     * MoonLakeRequestException
+     * 请求时异常构造函数
      *
      * @param cause 原因
      */

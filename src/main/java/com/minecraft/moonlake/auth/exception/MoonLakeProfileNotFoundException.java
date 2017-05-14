@@ -31,13 +31,13 @@ public class MoonLakeProfileNotFoundException extends MoonLakeProfileException {
     private static final long serialVersionUID = 8398382809558438203L;
 
     /**
-     * MoonLakeProfileNotFoundException
+     * 游戏档案不存在异常构造函数
      */
     public MoonLakeProfileNotFoundException() {
     }
 
     /**
-     * MoonLakeProfileNotFoundException
+     * 游戏档案不存在异常构造函数
      *
      * @param message 异常消息
      */
@@ -46,7 +46,7 @@ public class MoonLakeProfileNotFoundException extends MoonLakeProfileException {
     }
 
     /**
-     * MoonLakeProfileNotFoundException
+     * 游戏档案不存在异常构造函数
      *
      * @param message 异常消息
      * @param cause 原因
@@ -56,7 +56,7 @@ public class MoonLakeProfileNotFoundException extends MoonLakeProfileException {
     }
 
     /**
-     * MoonLakeProfileNotFoundException
+     * 游戏档案不存在异常构造函数
      *
      * @param cause 原因
      */

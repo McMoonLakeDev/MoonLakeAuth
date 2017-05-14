@@ -31,13 +31,13 @@ public class MoonLakeProfileException extends MoonLakeAuthException {
     private static final long serialVersionUID = 7488217608735546674L;
 
     /**
-     * MoonLakeProfileException
+     * 游戏档案异常构造函数
      */
     public MoonLakeProfileException() {
     }
 
     /**
-     * MoonLakeProfileException
+     * 游戏档案异常构造函数
      *
      * @param message 异常消息
      */
@@ -46,7 +46,7 @@ public class MoonLakeProfileException extends MoonLakeAuthException {
     }
 
     /**
-     * MoonLakeProfileException
+     * 游戏档案异常构造函数
      *
      * @param message 异常消息
      * @param cause 原因
@@ -56,7 +56,7 @@ public class MoonLakeProfileException extends MoonLakeAuthException {
     }
 
     /**
-     * MoonLakeProfileException
+     * 游戏档案异常构造函数
      *
      * @param cause 原因
      */

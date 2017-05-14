@@ -31,13 +31,13 @@ public class MoonLakeServiceUnavailableException extends MoonLakeRequestExceptio
     private static final long serialVersionUID = -8108034810512817120L;
 
     /**
-     * MoonLakeServiceUnavailableException
+     * 服务不可用异常构造函数
      */
     public MoonLakeServiceUnavailableException() {
     }
 
     /**
-     * MoonLakeServiceUnavailableException
+     * 服务不可用异常构造函数
      *
      * @param message 异常消息
      */
@@ -46,7 +46,7 @@ public class MoonLakeServiceUnavailableException extends MoonLakeRequestExceptio
     }
 
     /**
-     * MoonLakeServiceUnavailableException
+     * 服务不可用异常构造函数
      *
      * @param message 异常消息
      * @param cause 原因
@@ -56,7 +56,7 @@ public class MoonLakeServiceUnavailableException extends MoonLakeRequestExceptio
     }
 
     /**
-     * MoonLakeServiceUnavailableException
+     * 服务不可用异常构造函数
      *
      * @param cause 原因
      */

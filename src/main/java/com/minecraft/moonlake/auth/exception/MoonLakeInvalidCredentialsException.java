@@ -31,13 +31,13 @@ public class MoonLakeInvalidCredentialsException extends MoonLakeRequestExceptio
     private static final long serialVersionUID = 1647656324928893833L;
 
     /**
-     * MoonLakeInvalidCredentialsException
+     * 无效的证件异常构造函数
      */
     public MoonLakeInvalidCredentialsException() {
     }
 
     /**
-     * MoonLakeInvalidCredentialsException
+     * 无效的证件异常构造函数
      *
      * @param message 异常消息
      */
@@ -46,7 +46,7 @@ public class MoonLakeInvalidCredentialsException extends MoonLakeRequestExceptio
     }
 
     /**
-     * MoonLakeInvalidCredentialsException
+     * 无效的证件异常构造函数
      *
      * @param message 异常消息
      * @param cause 原因
@@ -56,7 +56,7 @@ public class MoonLakeInvalidCredentialsException extends MoonLakeRequestExceptio
     }
 
     /**
-     * MoonLakeInvalidCredentialsException
+     * 无效的证件异常构造函数
      *
      * @param cause 原因
      */

@@ -31,13 +31,13 @@ public class MoonLakeUserMigratedException extends MoonLakeInvalidCredentialsExc
     private static final long serialVersionUID = -8574263389941750970L;
 
     /**
-     * MoonLakeUserMigratedException
+     * 用户已迁移异常构造函数
      */
     public MoonLakeUserMigratedException() {
     }
 
     /**
-     * MoonLakeUserMigratedException
+     * 用户已迁移异常构造函数
      *
      * @param message 异常消息
      */
@@ -46,7 +46,7 @@ public class MoonLakeUserMigratedException extends MoonLakeInvalidCredentialsExc
     }
 
     /**
-     * MoonLakeUserMigratedException
+     * 用户已迁移异常构造函数
      *
      * @param message 异常消息
      * @param cause 原因
@@ -56,7 +56,7 @@ public class MoonLakeUserMigratedException extends MoonLakeInvalidCredentialsExc
     }
 
     /**
-     * MoonLakeUserMigratedException
+     * 用户已迁移异常构造函数
      *
      * @param cause 原因
      */

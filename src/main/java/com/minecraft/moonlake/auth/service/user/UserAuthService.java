@@ -140,7 +140,7 @@ public class UserAuthService extends MoonLakeAuthBaseService {
     }
 
     /**
-     * 获取此用户认证服务是否已经认证
+     * 获取此用户认证服务是否已经登录
      *
      * @return 是否已经登录
      */

@@ -20,6 +20,7 @@ package com.minecraft.moonlake.auth.exception;
 
 /**
  * <h1>MoonLakeAuthException</h1>
+ * 月色之湖认证异常
  *
  * @version 1.0
  * @author Month_Light
@@ -30,13 +31,13 @@ public class MoonLakeAuthException extends Exception {
     private static final long serialVersionUID = -2842152632597783319L;
 
     /**
-     * MoonLakeAuthException
+     * 月色之湖认证异常构造函数
      */
     public MoonLakeAuthException() {
     }
 
     /**
-     * MoonLakeAuthException
+     * 月色之湖认证异常构造函数
      *
      * @param message 异常信息
      */
@@ -45,7 +46,7 @@ public class MoonLakeAuthException extends Exception {
     }
 
     /**
-     * MoonLakeAuthException
+     * 月色之湖认证异常构造函数
      *
      * @param message 异常信息
      * @param cause 原因
@@ -55,7 +56,7 @@ public class MoonLakeAuthException extends Exception {
     }
 
     /**
-     * MoonLakeAuthException
+     * 月色之湖认证异常构造函数
      *
      * @param cause 原因
      */
